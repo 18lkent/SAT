@@ -1,0 +1,23 @@
+Begin
+
+running set to 0
+
+Input mode (Encrypt/Decrypt)
+
+while running is 0
+    if mode is encrypt
+        user input string to be encrypted
+        string converted
+        print converted string
+
+    elif mode is decrypt
+        user inputs encrypted string
+        string converted
+        print decrypted string
+
+    elif mode is exit
+        break loop
+
+    else
+        print invalid input
+
