@@ -18,7 +18,11 @@ while running == 0:
 
     elif mode_input == "2":
         file_input = input("Enter filename to Decrypt ") #Asks the user to enter a text file to have its contents decrypted
-        f = open(file_input, 'r+')  # opens the user specified file
+        f = open(file_input, 'r')  # opens the user specified file
+        for line in f:
+            line = line.replace("F4", "a").replace("A4", "b").replace("A1", "c").replace("E3", "d").replace("B6","e").replace("D1", "f").replace("C4", "g").replace("B5", "h").replace("C2", "i").replace("D3", "j").replace("F3", "k").replace("E6", "l").replace("A2", "m").replace("D5", 'n').replace("B3", "o").replace("A6", "p").replace("D6","q").replace("B1", "r").replace("D2", "s").replace("B4", "t").replace("A5", "u").replace("B2", "v").replace("A3","w").replace("F5", "x").replace("C6", "y").replace("C1", "z").replace("4!"," ")
+            x = open(file_input, 'w')
+            x.write(line)
         running = 1
 
     elif mode_input == "3":
