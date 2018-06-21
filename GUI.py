@@ -2,21 +2,26 @@ import tkinter as tk
 
 root = tk.Tk()
 root.geometry('800x600')
+root.configure(background="#515151")
+bgc = "#515151"
+hdc = "#272727"
+trimc = "#ff40e7"
 
-Besni = tk.Frame(root, bg='grey43')
-header = tk.Frame(root, bg='maroon1')
-content = tk.Frame(root, bg='grey43')
-footer = tk.Frame(root, bg='grey43')
 
-root.columnconfigure(0, weight=1) # 100%
+size = tk.Frame(root)
+Besni = tk.Frame(root, bg=bgc)
+header = tk.Frame(root, bg=hdc,width=800,height=29)
 
-root.rowconfigure(0, weight=1) # 10%
-root.rowconfigure(1, weight=1) # 10%
-root.rowconfigure(2, weight=7) # 70%
-root.rowconfigure(3, weight=1) # 10%
+header.grid(row=0,column=0)#,columnspan=29)
 
-header.grid(row=0, sticky='news')
-content.grid(row=1, sticky='news')
-footer.grid(row=2, sticky='news')
+general = tk.Button(root, text="General",highlightbackground='#272727')
+general.grid(row=0,column=0)
+
+trim = tk.Frame(root, bg=trimc,width=800, height=3)
+trim.grid(row=0,column=0)
+
+#settings = tk.Button(root, text="settings",highlightbackground='#272727')
+#settings.grid(row=0,column=1)
+
 
 root.mainloop()
