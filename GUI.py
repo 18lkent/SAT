@@ -2,12 +2,15 @@ import tkinter as tk
 
 root = tk.Tk()
 root.geometry('800x600')
+root.resizable(False, False)
 root.configure(background="#515151")
 bgc = "#515151"
 hdc = "#272727"
 trimc = "#ff40e7"
 
 Besni = tk.Frame(root, bg=bgc)
+
+### y = up and down, x = left and right
 
 trim = tk.Frame(root, bg=trimc,width=800, height=3,)
 trim.place(relx=0.0, rely=0.049)
@@ -25,6 +28,10 @@ settingsb.config(font=("Futura",15, "italic"))
 
 encodetextheader = tk.Frame(root, bg=hdc,width=341, height=31,)
 encodetextheader.place(relx=0.05, rely=0.1)
+
+encodetextheaderlabel = tk.Label(root, text="Encode", font=("Futura",15, "italic"))
+encodetextheaderlabel.place(relx=0.212, rely=0.102, height=24, width=75)
+encodetextheaderlabel.config(bg=hdc,fg="white")
 
 encodetext = tk.Text(root, height=25, width=47,bg = hdc, fg="white", borderwidth=2)
 encodetext.place(relx=0.05, rely=0.165)
