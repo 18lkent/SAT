@@ -1,6 +1,7 @@
 import tkinter as tk
 
 root = tk.Tk()
+root.title("Encoder/Decoder")
 root.geometry('800x600')
 root.resizable(False, False)
 root.configure(background="#515151")
@@ -37,8 +38,23 @@ encodetext = tk.Text(root, height=25, width=47,bg = hdc, fg="white", borderwidth
 encodetext.place(relx=0.05, rely=0.165)
 encodetext.config(highlightbackground=hdc)
 
+decodetextheader = tk.Frame(root, bg=hdc,width=341, height=31,)
+decodetextheader.place(relx=0.53, rely=0.1)
+
+decodetextheaderlabel = tk.Label(root, text="Decode", font=("Futura",15, "italic"))
+decodetextheaderlabel.place(relx=0.687, rely=0.102, height=24, width=75)
+decodetextheaderlabel.config(bg=hdc,fg="white")
+
 decodetext = tk.Text(root, height=25, width=47,bg = hdc, fg="white", borderwidth=2)
-decodetext.place(relx=0.53, rely=0.1)
+decodetext.place(relx=0.53, rely=0.165)
 decodetext.config(highlightbackground=hdc)
+
+convertb = tk.Button(root, text="Convert",highlightbackground=bgc)
+convertb.place(relx=0.4575, rely=0.83, height=24, width=75)
+convertb.config(font=("Futura",15, "italic"))
+
+closeb = tk.Button(root, text="Close",highlightbackground=bgc)
+closeb.place(relx=0.9, rely=0.95, height=24, width=75)
+closeb.config(font=("Futura",15, "italic"))
 
 root.mainloop()
