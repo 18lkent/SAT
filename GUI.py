@@ -1,5 +1,6 @@
 import tkinter as tk #imports tkinter module as tk
 
+########################################################################################################################
 
 root = tk.Tk()
 root.title("Encoder/Decoder") # gives title to gui
