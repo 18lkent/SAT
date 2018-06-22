@@ -67,6 +67,27 @@ convertb = tk.Button(root, text="Convert",highlightbackground=bgc, command = con
 convertb.place(relx=0.4575, rely=0.83, height=24, width=75)
 convertb.config(font=("Futura",15, "italic"))
 
+def copyd():
+    copyd2 = decodetext.get("1.0", 'end-1c')
+    root.clipboard_clear()
+    root.clipboard_append(str(copyd2))
+    root.update()
+
+def copye():
+    copye2 = encodetext.get("1.0", 'end-1c')
+    root.clipboard_clear()
+    root.clipboard_append(str(copye2))
+    root.update()
+
+
+copydb = tk.Button(root, text="Copy",highlightbackground=bgc, command=copyd)
+copydb.place(relx=0.867, rely=0.83, height=24, width=75)
+copydb.config(font=("Futura",15, "italic"))
+
+copyeb = tk.Button(root, text="Copy",highlightbackground=bgc, command=copye)
+copyeb.place(relx=0.0465, rely=0.83, height=24, width=75)
+copyeb.config(font=("Futura",15, "italic"))
+
 def close():
     exit(0)
 
