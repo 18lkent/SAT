@@ -31,6 +31,9 @@ settingsb.config(font=("Futura",15, "italic")) # sets font and text size for gen
 
 ########################################################################################################################
 
+encodetextheadershadow = tk.Frame(root, bg="black",width=341, height=31,) # makes the the shadow below the encoder header
+encodetextheadershadow.place(relx=0.052, rely=0.105) # places the shadow below the header
+
 encodetextheader = tk.Frame(root, bg=hdc,width=341, height=31,) # makes box for the header above the encoder text box
 encodetextheader.place(relx=0.05, rely=0.1) # places the header relative to the window
 
@@ -38,18 +41,27 @@ encodetextheaderlabel = tk.Label(root, text="Encode", font=("Futura",15, "italic
 encodetextheaderlabel.place(relx=0.212, rely=0.102, height=24, width=75) # positions the label in the header
 encodetextheaderlabel.config(bg=hdc,fg="white") # makes the text white and the background of the label the same colour as the header
 
+encodetextshadow = tk.Frame(root, height=387, width=341,bg = "black") # creates the text box
+encodetextshadow.place(relx=0.052, rely=0.170) # places the text box on the screen relative to the window colour as the text box
+
 encodetext = tk.Text(root, height=25, width=47,bg = hdc, fg="white", borderwidth=2) # creates the text box
 encodetext.place(relx=0.05, rely=0.165) # places the text box on the screen relative to the window
 encodetext.config(highlightbackground=hdc) # makes the highlight border the same colour as the text box
 
 ########################################################################################################################
 
-decodetextheader = tk.Frame(root, bg=hdc,width=341, height=31,) # makes the box fo the header aboce the decoder text box
+decodetextheadershadow = tk.Frame(root, bg="black",width=341, height=31,) # makes the the shadow below the decoder header
+decodetextheadershadow.place(relx=0.532, rely=0.105) # places the shadow below the header
+
+decodetextheader = tk.Frame(root, bg=hdc,width=341, height=31,) # makes the box fo the header above the decoder text box
 decodetextheader.place(relx=0.53, rely=0.1) # places the header relative to the window
 
 decodetextheaderlabel = tk.Label(root, text="Decode", font=("Futura",15, "italic")) # creates the label above the decoder
 decodetextheaderlabel.place(relx=0.687, rely=0.102, height=24, width=75) # positions the label in the header
 decodetextheaderlabel.config(bg=hdc,fg="white") # makes the text white and the background of the label the same colour as the header
+
+decodetextshadow = tk.Frame(root, height=387, width=341,bg = "black") # creates the text box
+decodetextshadow.place(relx=0.532, rely=0.170) # places the text box on the screen relative to the window colour as the text box
 
 decodetext = tk.Text(root, height=25, width=47,bg = hdc, fg="white", borderwidth=2) # creates the text box
 decodetext.place(relx=0.53, rely=0.165) # positions the text box on the screen relative to the window
