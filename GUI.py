@@ -27,23 +27,48 @@ tkvar.set('Default')
 # Colour Picker Confirm Button                                                                                             #
 ########################################################################################################################
 
+
 def colourConfirm(new_value):
     if new_value == "Default":
         trim.configure(bg=trimc)
+        f = open("user.cfg", "w")
+        f.write(new_value)
+        f.close()
     elif new_value == "Red":
         trim.configure(bg=Red)
+        f = open("user.cfg", "w")
+        f.write(new_value)
+        f.close()
     elif new_value == "Orange":
         trim.configure(bg=Orange)
+        f = open("user.cfg", "w")
+        f.write(new_value)
+        f.close()
     elif new_value == "Yellow":
         trim.configure(bg=Yellow)
+        f = open("user.cfg", "w")
+        f.write(new_value)
+        f.close()
     elif new_value == "Green":
         trim.configure(bg=Green)
+        f = open("user.cfg", "w")
+        f.write(new_value)
+        f.close()
     elif new_value == "Blue":
         trim.configure(bg=Blue)
+        f = open("user.cfg", "w")
+        f.write(new_value)
+        f.close()
     elif new_value == "Indigo":
         trim.configure(bg=Indigo)
+        f = open("user.cfg", "w")
+        f.write(new_value)
+        f.close()
     elif new_value == "Violet":
         trim.configure(bg=Violet)
+        f = open("user.cfg", "w")
+        f.write(new_value)
+        f.close()
 
 ########################################################################################################################
 # Settings button commands                                                                                             #
@@ -63,6 +88,7 @@ def settingsb():
     copydb.lower()
     copyeb.lower()
     popupMenu.tkraise()
+    popupMenuheadershadow.tkraise()
     popupMenuheader.tkraise()
     popupMenutitle.tkraise()
 
@@ -86,7 +112,7 @@ def generalb():
     popupMenu.lower()
     popupMenuheader.lower()
     popupMenutitle.lower()
-
+    popupMenuheadershadow.lower()
 ########################################################################################################################
 # Settings Page                                                                                                        #
 ########################################################################################################################
@@ -97,6 +123,9 @@ popupMenu.configure(bg=bgc)
 
 popupMenuheader = tk.Frame(root, bg=hdc,width=130, height=31,) # makes box for the header above the encoder text box
 popupMenuheader.place(relx=0.04, rely=0.1) # places the header relative to the window
+
+popupMenuheadershadow = tk.Frame(root, bg="black",width=130, height=31,) # makes box for the header above the encoder text box
+popupMenuheadershadow.place(relx=0.042, rely=0.105) # places the header relative to the window
 
 popupMenutitle = tk.Label(root, text="Choose a colour")
 popupMenutitle.place(relx=0.04, rely=0.105)
@@ -112,6 +141,12 @@ hider.place(relx=0,rely=0)
 trim = tk.Frame(root, bg=trimc,width=800, height=3,) # defines the size and colour of the pink trim
 trim.place(relx=0.0, rely=0.049) # places the trim relative to the window (this is why i disabled window resizing)
 
+f = open("user.cfg", "r")
+x = f.read()
+if x != "":
+    trim.configure(bg=x)
+else:
+    trim.configure(bg=trimc)
 header = tk.Frame(root, bg=hdc,width=800,height=29) # sets toolbar size and colour
 header.grid(row=0,column=0,rowspan=29) # places toolbar at the top
 
