@@ -1,6 +1,8 @@
 import tkinter as tk #imports tkinter module as tk
 
 ########################################################################################################################
+# Base Settings and Universal Assets                                                                                   #
+########################################################################################################################
 
 root = tk.Tk()
 root.title("Encoder/Decoder") # gives title to gui
@@ -10,11 +12,69 @@ root.configure(background="#515151") # sets windows background colour as dark gr
 bgc = "#515151" # dark grey colour
 hdc = "#272727" # darker grey colour
 trimc = "#ff40e7" # pink colour
+Red = "#ff0000"
+Orange = "#ff7f00"
+Yellow = "#ffff00"
+Green = "#00ff00"
+Blue = "#0000ff"
+Indigo = "#4b0082"
+Violet = "#9400d3"
 tkvar = tk.StringVar(root)
 Colours = ["Default", "Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet"]
 tkvar.set('Default')
 
 ########################################################################################################################
+# Trim Colours                                                                                                         #
+########################################################################################################################
+
+trim = tk.Frame(root, bg=trimc,width=800, height=3,) # defines the size and colour of the trim
+trim.place(relx=0.0, rely=0.049)
+redtrim = tk.Frame(root, bg=Red,width=800, height=3,) # defines the size and colour of the trim
+redtrim.place(relx=0.0, rely=0.049)
+orangetrim = tk.Frame(root, bg=Orange,width=800, height=3,) # defines the size and colour of the trim
+orangetrim.place(relx=0.0, rely=0.049)
+yellowtrim = tk.Frame(root, bg=Yellow,width=800, height=3,) # defines the size and colour of the trim
+yellowtrim.place(relx=0.0, rely=0.049)
+greentrim = tk.Frame(root, bg=Green,width=800, height=3,) # defines the size and colour of the trim
+greentrim.place(relx=0.0, rely=0.049)
+bluetrim = tk.Frame(root, bg=Blue,width=800, height=3,) # defines the size and colour of the trim
+bluetrim.place(relx=0.0, rely=0.049)
+indigotrim = tk.Frame(root, bg=Indigo,width=800, height=3,) # defines the size and colour of the trim
+indigotrim.place(relx=0.0, rely=0.049)
+violettrim = tk.Frame(root, bg=Violet,width=800, height=3,) # defines the size and colour of the trim
+violettrim.place(relx=0.0, rely=0.049)
+
+########################################################################################################################
+# Colour Picker Confirm Button                                                                                             #
+########################################################################################################################
+
+def colourConfirm():
+    tkvar.get()
+    if tkvar == "Default":
+        trim.tkraise()
+    elif tkvar == "Red":
+        redtrim.tkraise()
+    elif tkvar == "Orange":
+        orangetrim.tkraise()
+    elif tkvar == "Yellow":
+        yellowtrim.tkraise()
+    elif tkvar == "Green":
+        greentrim.tkraise()
+    elif tkvar == "Blue":
+        bluetrim.tkraise()
+    elif tkvar == "Indigo":
+        indigotrim.tkraise()
+    elif tkvar == "Violet":
+        violettrim.tkraise()
+
+colConfirm = tk.Button(root, text="Confirm",highlightbackground=bgc, command="colConfirm") # creates general button
+colConfirm.place(relx=0.202, rely=0.155, height=24, width=75) # positions the button on the toolbar relative to the window
+colConfirm.config(font=("Futura",15, "italic")) # sets font and text size for general button
+
+########################################################################################################################
+# Settings button commands                                                                                             #
+########################################################################################################################
+
 def settingsb():
     encodetextheadershadow.lower()
     encodetextheader.lower()
@@ -33,8 +93,12 @@ def settingsb():
     popupMenu.tkraise()
     popupMenuheader.tkraise()
     popupMenutitle.tkraise()
+    colConfirm.tkraise()
 
 ########################################################################################################################
+# General button commands                                                                                              #
+########################################################################################################################
+
 def generalb():
     encodetextshadow.tkraise()
     decodetextshadow.tkraise()
@@ -53,6 +117,10 @@ def generalb():
     popupMenu.lower()
     popupMenuheader.lower()
     popupMenutitle.lower()
+    colConfirm.lower()
+
+########################################################################################################################
+# Settings Page                                                                                                        #
 ########################################################################################################################
 
 popupMenu = tk.OptionMenu(root, tkvar, *Colours)
@@ -70,6 +138,8 @@ hider = tk.Frame(root, bg=bgc, width=800, height=600)
 hider.place(relx=0,rely=0)
 
 ########################################################################################################################
+# Header                                                                                                               #
+########################################################################################################################
 
 trim = tk.Frame(root, bg=trimc,width=800, height=3,) # defines the size and colour of the pink trim
 trim.place(relx=0.0, rely=0.049) # places the trim relative to the window (this is why i disabled window resizing)
@@ -77,6 +147,8 @@ trim.place(relx=0.0, rely=0.049) # places the trim relative to the window (this 
 header = tk.Frame(root, bg=hdc,width=800,height=29) # sets toolbar size and colour
 header.grid(row=0,column=0,rowspan=29) # places toolbar at the top
 
+########################################################################################################################
+# Header Buttons                                                                                                       #
 ########################################################################################################################
 
 generalb = tk.Button(root, text="General",highlightbackground='#272727', command=generalb) # creates general button
@@ -87,6 +159,8 @@ settingsb = tk.Button(root, text="Settings",highlightbackground='#272727', comma
 settingsb.place(relx=0.09, rely=0.0, height=24, width=75) # positions the button on the toolbar relative to the window
 settingsb.config(font=("Futura",15, "italic")) # sets font and text size for general button
 
+########################################################################################################################
+# Encode text box                                                                                                      #
 ########################################################################################################################
 
 encodetextheadershadow = tk.Frame(root, bg="black",width=341, height=31,) # makes the the shadow below the encoder header
@@ -107,6 +181,8 @@ encodetext.place(relx=0.05, rely=0.165) # places the text box on the screen rela
 encodetext.config(highlightbackground=hdc) # makes the highlight border the same colour as the text box
 
 ########################################################################################################################
+# Decode text box                                                                                                      #
+########################################################################################################################
 
 decodetextheadershadow = tk.Frame(root, bg="black",width=341, height=31,) # makes the the shadow below the decoder header
 decodetextheadershadow.place(relx=0.532, rely=0.105) # places the shadow below the header
@@ -126,6 +202,8 @@ decodetext.place(relx=0.53, rely=0.165) # positions the text box on the screen r
 decodetext.config(highlightbackground=hdc) # makes the highlight border the same colour as the text box
 
 ########################################################################################################################
+# Conversion Function                                                                                                  #
+########################################################################################################################
 
 def convert(): # defines function called "convert"
     inputd = decodetext.get("1.0",'end-1c') # gets the input from the decode text box
@@ -140,11 +218,15 @@ def convert(): # defines function called "convert"
         decodetext.insert('end', inputec) #inserts decoded text in the encode box # replace algorithm ^
 
 ########################################################################################################################
+# Convert Button                                                                                                       #
+########################################################################################################################
 
 convertb = tk.Button(root, text="Convert",highlightbackground=bgc, command = convert) # creates button and assigns convert command
 convertb.place(relx=0.4575, rely=0.83, height=24, width=75) # places convert button relative to window
 convertb.config(font=("Futura",15, "italic")) # configures button font
 
+########################################################################################################################
+# Copy decode function and button                                                                                        #
 ########################################################################################################################
 
 def copyd(): # defines copy button for the decoder
@@ -158,6 +240,8 @@ copydb.place(relx=0.867, rely=0.83, height=24, width=75) # establishes proportio
 copydb.config(font=("Futura",15, "italic")) # configures text on the button
 
 ########################################################################################################################
+# Copy encode function and button                                                                                      #
+########################################################################################################################
 
 def copye(): # defines copy button for the encoder
     copye2 = encodetext.get("1.0", 'end-1c') # gets text from the encoder box
@@ -170,16 +254,22 @@ copyeb.place(relx=0.0465, rely=0.83, height=24, width=75) # establishes proporti
 copyeb.config(font=("Futura",15, "italic")) # configures text on the button
 
 ########################################################################################################################
+# Close button function                                                                                                #
+########################################################################################################################
 
 def close(): # defines close function
     exit(0) # exits code with code 0
 
+########################################################################################################################
+# Close Button                                                                                                         #
 ########################################################################################################################
 
 closeb = tk.Button(root, text="Close",highlightbackground=bgc, command=close) # creates close button and assigns close command
 closeb.place(relx=0.9, rely=0.95, height=24, width=75) # places button and defines size
 closeb.config(font=("Futura",15, "italic")) # configures text on the button
 
+########################################################################################################################
+# Main loop                                                                                                            #
 ########################################################################################################################
 
 root.mainloop() # starts mainloop
