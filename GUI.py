@@ -24,52 +24,26 @@ Colours = ["Default", "Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Vio
 tkvar.set('Default')
 
 ########################################################################################################################
-# Trim Colours                                                                                                         #
-########################################################################################################################
-
-trim = tk.Frame(root, bg=trimc,width=800, height=3,) # defines the size and colour of the trim
-trim.place(relx=0.0, rely=0.049)
-redtrim = tk.Frame(root, bg=Red,width=800, height=3,) # defines the size and colour of the trim
-redtrim.place(relx=0.0, rely=0.049)
-orangetrim = tk.Frame(root, bg=Orange,width=800, height=3,) # defines the size and colour of the trim
-orangetrim.place(relx=0.0, rely=0.049)
-yellowtrim = tk.Frame(root, bg=Yellow,width=800, height=3,) # defines the size and colour of the trim
-yellowtrim.place(relx=0.0, rely=0.049)
-greentrim = tk.Frame(root, bg=Green,width=800, height=3,) # defines the size and colour of the trim
-greentrim.place(relx=0.0, rely=0.049)
-bluetrim = tk.Frame(root, bg=Blue,width=800, height=3,) # defines the size and colour of the trim
-bluetrim.place(relx=0.0, rely=0.049)
-indigotrim = tk.Frame(root, bg=Indigo,width=800, height=3,) # defines the size and colour of the trim
-indigotrim.place(relx=0.0, rely=0.049)
-violettrim = tk.Frame(root, bg=Violet,width=800, height=3,) # defines the size and colour of the trim
-violettrim.place(relx=0.0, rely=0.049)
-
-########################################################################################################################
 # Colour Picker Confirm Button                                                                                             #
 ########################################################################################################################
 
-def colourConfirm():
-    tkvar.get()
-    if tkvar == "Default":
-        trim.tkraise()
-    elif tkvar == "Red":
-        redtrim.tkraise()
-    elif tkvar == "Orange":
-        orangetrim.tkraise()
-    elif tkvar == "Yellow":
-        yellowtrim.tkraise()
-    elif tkvar == "Green":
-        greentrim.tkraise()
-    elif tkvar == "Blue":
-        bluetrim.tkraise()
-    elif tkvar == "Indigo":
-        indigotrim.tkraise()
-    elif tkvar == "Violet":
-        violettrim.tkraise()
-
-colConfirm = tk.Button(root, text="Confirm",highlightbackground=bgc, command="colConfirm") # creates general button
-colConfirm.place(relx=0.202, rely=0.155, height=24, width=75) # positions the button on the toolbar relative to the window
-colConfirm.config(font=("Futura",15, "italic")) # sets font and text size for general button
+def colourConfirm(new_value):
+    if new_value == "Default":
+        trim.configure(bg=trimc)
+    elif new_value == "Red":
+        trim.configure(bg=Red)
+    elif new_value == "Orange":
+        trim.configure(bg=Orange)
+    elif new_value == "Yellow":
+        trim.configure(bg=Yellow)
+    elif new_value == "Green":
+        trim.configure(bg=Green)
+    elif new_value == "Blue":
+        trim.configure(bg=Blue)
+    elif new_value == "Indigo":
+        trim.configure(bg=Indigo)
+    elif new_value == "Violet":
+        trim.configure(bg=Violet)
 
 ########################################################################################################################
 # Settings button commands                                                                                             #
@@ -93,7 +67,6 @@ def settingsb():
     popupMenu.tkraise()
     popupMenuheader.tkraise()
     popupMenutitle.tkraise()
-    colConfirm.tkraise()
 
 ########################################################################################################################
 # General button commands                                                                                              #
@@ -117,13 +90,12 @@ def generalb():
     popupMenu.lower()
     popupMenuheader.lower()
     popupMenutitle.lower()
-    colConfirm.lower()
 
 ########################################################################################################################
 # Settings Page                                                                                                        #
 ########################################################################################################################
 
-popupMenu = tk.OptionMenu(root, tkvar, *Colours)
+popupMenu = tk.OptionMenu(root, tkvar, *Colours, command=colourConfirm)
 popupMenu.place(relx=0.202, rely=0.105)
 popupMenu.configure(bg=bgc)
 
