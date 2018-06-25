@@ -10,6 +10,64 @@ root.configure(background="#515151") # sets windows background colour as dark gr
 bgc = "#515151" # dark grey colour
 hdc = "#272727" # darker grey colour
 trimc = "#ff40e7" # pink colour
+tkvar = tk.StringVar(root)
+Colours = ["Default", "Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet"]
+tkvar.set('Default')
+
+########################################################################################################################
+def settingsb():
+    encodetextheadershadow.lower()
+    encodetextheader.lower()
+    encodetext.lower()
+    encodetextheaderlabel.lower()
+    encodetextshadow.lower()
+    decodetextheadershadow.lower()
+    decodetextheader.lower()
+    decodetext.lower()
+    decodetextheaderlabel.lower()
+    decodetextshadow.lower()
+    convertb.lower()
+    copydb.lower()
+    copyeb.lower()
+    convertb.lower()
+    popupMenu.tkraise()
+    popupMenuheader.tkraise()
+    popupMenutitle.tkraise()
+
+########################################################################################################################
+def generalb():
+    encodetextshadow.tkraise()
+    decodetextshadow.tkraise()
+    encodetextheadershadow.tkraise()
+    encodetextheader.tkraise()
+    encodetext.tkraise()
+    encodetextheaderlabel.tkraise()
+    decodetextheadershadow.tkraise()
+    decodetextheader.tkraise()
+    decodetext.tkraise()
+    decodetextheaderlabel.tkraise()
+    convertb.tkraise()
+    copydb.tkraise()
+    copyeb.tkraise()
+    convertb.tkraise()
+    popupMenu.lower()
+    popupMenuheader.lower()
+    popupMenutitle.lower()
+########################################################################################################################
+
+popupMenu = tk.OptionMenu(root, tkvar, *Colours)
+popupMenu.place(relx=0.202, rely=0.105)
+popupMenu.configure(bg=bgc)
+
+popupMenuheader = tk.Frame(root, bg=hdc,width=130, height=31,) # makes box for the header above the encoder text box
+popupMenuheader.place(relx=0.04, rely=0.1) # places the header relative to the window
+
+popupMenutitle = tk.Label(root, text="Choose a colour")
+popupMenutitle.place(relx=0.04, rely=0.105)
+popupMenutitle.configure(font=("Futura",15, "italic"),fg="white", bg=hdc)
+
+hider = tk.Frame(root, bg=bgc, width=800, height=600)
+hider.place(relx=0,rely=0)
 
 ########################################################################################################################
 
@@ -21,11 +79,11 @@ header.grid(row=0,column=0,rowspan=29) # places toolbar at the top
 
 ########################################################################################################################
 
-generalb = tk.Button(root, text="General",highlightbackground='#272727') # creates general button
+generalb = tk.Button(root, text="General",highlightbackground='#272727', command=generalb) # creates general button
 generalb.place(relx=0.0, rely=0.0, height=24, width=75) # positions the button on the toolbar relative to the window
 generalb.config(font=("Futura",15, "italic")) # sets font and text size for general button
 
-settingsb = tk.Button(root, text="Settings",highlightbackground='#272727') # creates settings button
+settingsb = tk.Button(root, text="Settings",highlightbackground='#272727', command=settingsb) # creates settings button
 settingsb.place(relx=0.09, rely=0.0, height=24, width=75) # positions the button on the toolbar relative to the window
 settingsb.config(font=("Futura",15, "italic")) # sets font and text size for general button
 
