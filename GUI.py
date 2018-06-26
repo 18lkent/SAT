@@ -31,41 +31,49 @@ tkvar.set('Default')
 def colourConfirm(new_value):
     if new_value == "Default":
         trim.configure(bg=trimc)
+        selectedWindow.configure(bg=trimc)
         f = open("user.cfg", "w")
         f.write(new_value)
         f.close()
     elif new_value == "Red":
         trim.configure(bg=Red)
+        selectedWindow.configure(bg=Red)
         f = open("user.cfg", "w")
         f.write(new_value)
         f.close()
     elif new_value == "Orange":
         trim.configure(bg=Orange)
+        selectedWindow.configure(bg=Orange)
         f = open("user.cfg", "w")
         f.write(new_value)
         f.close()
     elif new_value == "Yellow":
         trim.configure(bg=Yellow)
+        selectedWindow.configure(bg=Yellow)
         f = open("user.cfg", "w")
         f.write(new_value)
         f.close()
     elif new_value == "Green":
         trim.configure(bg=Green)
+        selectedWindow.configure(bg=Green)
         f = open("user.cfg", "w")
         f.write(new_value)
         f.close()
     elif new_value == "Blue":
         trim.configure(bg=Blue)
+        selectedWindow.configure(bg=Blue)
         f = open("user.cfg", "w")
         f.write(new_value)
         f.close()
     elif new_value == "Indigo":
         trim.configure(bg=Indigo)
+        selectedWindow.configure(bg=Indigo)
         f = open("user.cfg", "w")
         f.write(new_value)
         f.close()
     elif new_value == "Violet":
         trim.configure(bg=Violet)
+        selectedWindow.configure(bg=Violet)
         f = open("user.cfg", "w")
         f.write(new_value)
         f.close()
@@ -91,6 +99,7 @@ def settingsb():
     popupMenuheadershadow.tkraise()
     popupMenuheader.tkraise()
     popupMenutitle.tkraise()
+    selectedWindow.place(relx=0.094, rely=0.04)
 
 ########################################################################################################################
 # General button commands                                                                                              #
@@ -113,6 +122,7 @@ def generalb():
     popupMenuheader.lower()
     popupMenutitle.lower()
     popupMenuheadershadow.lower()
+    selectedWindow.place(relx=0.004, rely=0.04)
 ########################################################################################################################
 # Settings Page                                                                                                        #
 ########################################################################################################################
@@ -143,12 +153,19 @@ trim.place(relx=0.0, rely=0.049) # places the trim relative to the window (this 
 
 f = open("user.cfg", "r")
 x = f.read()
-if x != "":
-    trim.configure(bg=x)
-else:
-    trim.configure(bg=trimc)
+
 header = tk.Frame(root, bg=hdc,width=800,height=29) # sets toolbar size and colour
 header.grid(row=0,column=0,rowspan=29) # places toolbar at the top
+
+selectedWindow = tk.Frame(root, bg=trimc, width=69, height=2)
+selectedWindow.place(relx=0.004, rely=0.04)
+
+if x != "" and x != "Default":
+    trim.configure(bg=x)
+    selectedWindow.configure(bg=x)
+else:
+    trim.configure(bg=trimc)
+    selectedWindow.configure(bg=trimc)
 
 ########################################################################################################################
 # Header Buttons                                                                                                       #
