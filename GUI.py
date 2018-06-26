@@ -8,10 +8,12 @@ root = tk.Tk()
 root.title("Encoder/Decoder") # gives title to gui
 root.geometry('800x600') # sets the window's size to 800px by 600px
 root.resizable(False, False) # disallows window resizing
-root.configure(background="#515151") # sets windows background colour as dark grey
 bgc = "#515151" # default background colour (dark grey)
+root.configure(bg=bgc) # sets windows background colour as dark grey
 hdc = "#272727" # default header colour (darker grey)
 trimc = "#ff40e7" # default trim colour (Pink)
+lightbgc = "#CDCDCD"
+lighthdc = "#AAAAAA"
 Red = "#ff0000" # red
 Orange = "#ff7f00" # orange
 Yellow = "#ffff00" # yellow
@@ -22,11 +24,12 @@ Violet = "#9400d3" # violet
 tkvar = tk.StringVar(root) # string variable for the dropdown menu for the colour changer
 Colours = ["Default", "Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet"] # colours in the dropdown menu
 tkvar.set('Default') # setting the default option in the colour picker
-
+tkvar2 = tk.StringVar(root)
+Themes = ["Default", "Light"]
+tkvar2.set("Default")
 ########################################################################################################################
-# Colour Picker Confirm Button                                                                                             #
+# Colour Picker                                                                                                        #
 ########################################################################################################################
-
 
 def colourConfirm(new_value): # defines function "colourConfirm" with parameters "new_value"
     if new_value == "Default": # if the value included equals default,
@@ -79,6 +82,54 @@ def colourConfirm(new_value): # defines function "colourConfirm" with parameters
         f.close()
 
 ########################################################################################################################
+# Theme Picker                                                                                                         #
+########################################################################################################################
+
+def themeconfirm(theme_value):
+    if theme_value == "Default":
+        header.configure(bg=hdc)
+        generalb.configure(highlightbackground=hdc)
+        settingsb.configure(highlightbackground=hdc)
+        copydb.configure(highlightbackground=bgc)
+        copyeb.configure(highlightbackground=bgc)
+        root.configure(bg=bgc)
+        hider.configure(bg=bgc)
+        closeb.configure(highlightbackground=bgc)
+        encodetext.configure(bg=hdc, highlightbackground=hdc)
+        decodetext.configure(bg=hdc, highlightbackground=hdc)
+        encodetextheader.configure(bg=hdc)
+        encodetextheaderlabel.configure(bg=hdc, fg="white")
+        decodetextheader.configure(bg=hdc)
+        decodetextheaderlabel.configure(bg=hdc, fg="white")
+        colourdropdownMenuheader.configure(bg=hdc)
+        colourdropdownMenu.configure(bg=bgc)
+        colourdropdownMenutitle.configure(bg=hdc, fg="white")
+        themedropdownMenuheader.configure(bg=hdc)
+        themedropdownMenu.configure(bg=bgc)
+        themedropdownMenutitle.configure(bg=hdc, fg="white")
+    elif theme_value == "Light":
+        header.configure(bg=lighthdc)
+        generalb.configure(highlightbackground=lighthdc)
+        settingsb.configure(highlightbackground=lighthdc)
+        copydb.configure(highlightbackground=lightbgc)
+        copyeb.configure(highlightbackground=lightbgc)
+        root.configure(bg=lightbgc)
+        hider.configure(bg=lightbgc)
+        closeb.configure(highlightbackground=lightbgc)
+        encodetext.configure(bg=lighthdc, highlightbackground=lighthdc)
+        decodetext.configure(bg=lighthdc, highlightbackground=lighthdc)
+        encodetextheader.configure(bg=lighthdc)
+        encodetextheaderlabel.configure(bg=lighthdc, fg="black")
+        decodetextheader.configure(bg=lighthdc)
+        decodetextheaderlabel.configure(bg=lighthdc, fg="black")
+        colourdropdownMenuheader.configure(bg=lighthdc)
+        colourdropdownMenu.configure(bg=lightbgc)
+        colourdropdownMenutitle.configure(bg=lighthdc, fg="black")
+        themedropdownMenuheader.configure(bg=lighthdc)
+        themedropdownMenu.configure(bg=lightbgc)
+        themedropdownMenutitle.configure(bg=lighthdc, fg="black")
+
+########################################################################################################################
 # Settings button commands                                                                                             #
 ########################################################################################################################
 
@@ -95,10 +146,14 @@ def settingsb(): # this is the command that is triggered when the setting tab bu
     decodetextshadow.lower() # Lowers the shadow behind the decoder text box
     copydb.lower() # Lowers the copy button next to the decode text box
     copyeb.lower() # Lowers the copy button next to the encode text box
-    popupMenu.tkraise() # Raises the dropdown menu
-    popupMenuheadershadow.tkraise() # Raises the dropdown menu header shadow
-    popupMenuheader.tkraise() # Raises the dropdown menu header
-    popupMenutitle.tkraise() # Raises the dropdown menu title
+    colourdropdownMenu.tkraise() # Raises the dropdown menu
+    colourdropdownMenuheadershadow.tkraise() # Raises the dropdown menu header shadow
+    colourdropdownMenuheader.tkraise() # Raises the dropdown menu header
+    colourdropdownMenutitle.tkraise() # Raises the dropdown menu title
+    themedropdownMenu.tkraise()
+    themedropdownMenuheadershadow.tkraise()
+    themedropdownMenuheader.tkraise()
+    themedropdownMenutitle.tkraise()
     selectedWindow.place(relx=0.094, rely=0.04) # positions the current window indicator below the settings window
 
 ########################################################################################################################
@@ -118,28 +173,47 @@ def generalb(): # this is the command that is triggered when the general button 
     decodetextheaderlabel.tkraise() # Raises the decode text box label
     copydb.tkraise() # Raises the decode text box copy button
     copyeb.tkraise() # Raises the encode text box copy button
-    popupMenu.lower() #  lowers the dropdown menu
-    popupMenuheader.lower() # lowers the dropdown menu header
-    popupMenutitle.lower() # lowers the dropdown menu title
-    popupMenuheadershadow.lower() # lowers the dropdown menu header shadow
+    colourdropdownMenu.lower() #  lowers the dropdown menu
+    colourdropdownMenuheader.lower() # lowers the dropdown menu header
+    colourdropdownMenutitle.lower() # lowers the dropdown menu title
+    colourdropdownMenuheadershadow.lower() # lowers the dropdown menu header shadow
+    themedropdownMenu.lower()
+    themedropdownMenuheadershadow.lower()
+    themedropdownMenuheader.lower()
+    themedropdownMenutitle.lower()
     selectedWindow.place(relx=0.004, rely=0.04) # positions the current window indicator below the general window
+
 ########################################################################################################################
 # Settings Page                                                                                                        #
 ########################################################################################################################
 
-popupMenu = tk.OptionMenu(root, tkvar, *Colours, command=colourConfirm) # makes the dropdown menu
-popupMenu.place(relx=0.202, rely=0.105) # places the dropdown menu relative to the window
-popupMenu.configure(bg=bgc) # makes the background colour of the dropdown menu the same as the pages background
+colourdropdownMenu = tk.OptionMenu(root, tkvar, *Colours, command=colourConfirm) # makes the dropdown menu
+colourdropdownMenu.place(relx=0.202, rely=0.105) # places the dropdown menu relative to the window
+colourdropdownMenu.configure(bg=bgc) # makes the background colour of the dropdown menu the same as the pages background
 
-popupMenuheader = tk.Frame(root, bg=hdc,width=130, height=31,) # makes box for the header above the drop down menu
-popupMenuheader.place(relx=0.04, rely=0.1) # places the header relative to the window
+colourdropdownMenuheader = tk.Frame(root, bg=hdc,width=130, height=31,) # makes box for the header above the drop down menu
+colourdropdownMenuheader.place(relx=0.04, rely=0.1) # places the header relative to the window
 
-popupMenuheadershadow = tk.Frame(root, bg="black",width=130, height=31,) # makes shadow under the header above the drop down menu
-popupMenuheadershadow.place(relx=0.042, rely=0.105) # places the shadow relative to the window
+colourdropdownMenuheadershadow = tk.Frame(root, bg="black",width=130, height=31,) # makes shadow under the header above the drop down menu
+colourdropdownMenuheadershadow.place(relx=0.042, rely=0.105) # places the shadow relative to the window
 
-popupMenutitle = tk.Label(root, text="Choose a colour") # creates the label for the colour picker
-popupMenutitle.place(relx=0.04, rely=0.105) # places the label for the colour picker on the header
-popupMenutitle.configure(font=("Futura",15, "italic"),fg="white", bg=hdc) # changes the font, font colour and background colour of the label
+colourdropdownMenutitle = tk.Label(root, text="Choose a colour") # creates the label for the colour picker
+colourdropdownMenutitle.place(relx=0.04, rely=0.105) # places the label for the colour picker on the header
+colourdropdownMenutitle.configure(font=("Futura",15, "italic"),fg="white", bg=hdc) # changes the font, font colour and background colour of the label
+
+themedropdownMenu = tk.OptionMenu(root, tkvar2, *Themes, command=themeconfirm) # makes the dropdown menu
+themedropdownMenu.place(relx=0.202, rely=0.205) # places the dropdown menu relative to the window
+themedropdownMenu.configure(bg=bgc) # makes the background colour of the dropdown menu the same as the pages background
+
+themedropdownMenuheader = tk.Frame(root, bg=hdc,width=130, height=31,) # makes box for the header above the drop down menu
+themedropdownMenuheader.place(relx=0.04, rely=0.2) # places the header relative to the window
+
+themedropdownMenuheadershadow = tk.Frame(root, bg="black",width=130, height=31,) # makes shadow under the header above the drop down menu
+themedropdownMenuheadershadow.place(relx=0.042, rely=0.205) # places the shadow relative to the window
+
+themedropdownMenutitle = tk.Label(root, text="Choose a theme") # creates the label for the colour picker
+themedropdownMenutitle.place(relx=0.04, rely=0.205) # places the label for the colour picker on the header
+themedropdownMenutitle.configure(font=("Futura",15, "italic"),fg="white", bg=hdc) # changes the font, font colour and background colour of the label
 
 hider = tk.Frame(root, bg=bgc, width=800, height=600) # a frame for hiding the contents of the page which the user is not on
 hider.place(relx=0,rely=0) # places the hider
@@ -171,11 +245,11 @@ else: # if x is nothing (config file empty) or "default"
 # Header Buttons                                                                                                       #
 ########################################################################################################################
 
-generalb = tk.Button(root, text="General",highlightbackground='#272727', command=generalb) # creates general button
+generalb = tk.Button(root, text="General",highlightbackground=hdc, command=generalb) # creates general button
 generalb.place(relx=0.0, rely=0.0, height=24, width=75) # positions the button on the toolbar relative to the window
 generalb.config(font=("Futura",15, "italic")) # sets font and text size for general button
 
-settingsb = tk.Button(root, text="Settings",highlightbackground='#272727', command=settingsb) # creates settings button
+settingsb = tk.Button(root, text="Settings",highlightbackground=hdc, command=settingsb) # creates settings button
 settingsb.place(relx=0.09, rely=0.0, height=24, width=75) # positions the button on the toolbar relative to the window
 settingsb.config(font=("Futura",15, "italic")) # sets font and text size for general button
 
