@@ -9,38 +9,38 @@ root.title("Encoder/Decoder") # gives title to gui
 root.geometry('800x600') # sets the window's size to 800px by 600px
 root.resizable(False, False) # disallows window resizing
 root.configure(background="#515151") # sets windows background colour as dark grey
-bgc = "#515151" # dark grey colour
-hdc = "#272727" # darker grey colour
-trimc = "#ff40e7" # pink colour
-Red = "#ff0000"
-Orange = "#ff7f00"
-Yellow = "#ffff00"
-Green = "#00ff00"
-Blue = "#0000ff"
-Indigo = "#4b0082"
-Violet = "#9400d3"
-tkvar = tk.StringVar(root)
-Colours = ["Default", "Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet"]
-tkvar.set('Default')
+bgc = "#515151" # default background colour (dark grey)
+hdc = "#272727" # default header colour (darker grey)
+trimc = "#ff40e7" # default trim colour (Pink)
+Red = "#ff0000" # red
+Orange = "#ff7f00" # orange
+Yellow = "#ffff00" # yellow
+Green = "#00ff00" # green
+Blue = "#0000ff" # blue
+Indigo = "#4b0082" # indigo
+Violet = "#9400d3" # violet
+tkvar = tk.StringVar(root) # string variable for the dropdown menu for the colour changer
+Colours = ["Default", "Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet"] # colours in the dropdown menu
+tkvar.set('Default') # setting the default option in the colour picker
 
 ########################################################################################################################
 # Colour Picker Confirm Button                                                                                             #
 ########################################################################################################################
 
 
-def colourConfirm(new_value):
-    if new_value == "Default":
-        trim.configure(bg=trimc)
-        selectedWindow.configure(bg=trimc)
-        f = open("user.cfg", "w")
-        f.write(new_value)
-        f.close()
-    elif new_value == "Red":
-        trim.configure(bg=Red)
-        selectedWindow.configure(bg=Red)
-        f = open("user.cfg", "w")
-        f.write(new_value)
-        f.close()
+def colourConfirm(new_value): # defines function "colourConfirm" with parameters "new_value"
+    if new_value == "Default": # if the value included equals default,
+        trim.configure(bg=trimc) # change the trim colour
+        selectedWindow.configure(bg=trimc) # and the current window indicator colour to the default,
+        f = open("user.cfg", "w") # open and
+        f.write(new_value) # write the selected value to the user.cfg file
+        f.close() # then close
+    elif new_value == "Red": # if the value included equals red,
+        trim.configure(bg=Red) # change the trim colour
+        selectedWindow.configure(bg=Red) # and the current window indicator colour to red,
+        f = open("user.cfg", "w") # open and
+        f.write(new_value) # write the selected value to the user.cfg file
+        f.close() # then close || the following modules all work the same as the previous
     elif new_value == "Orange":
         trim.configure(bg=Orange)
         selectedWindow.configure(bg=Orange)
@@ -82,67 +82,67 @@ def colourConfirm(new_value):
 # Settings button commands                                                                                             #
 ########################################################################################################################
 
-def settingsb():
-    encodetextheadershadow.lower()
-    encodetextheader.lower()
-    encodetext.lower()
-    encodetextheaderlabel.lower()
-    encodetextshadow.lower()
-    decodetextheadershadow.lower()
-    decodetextheader.lower()
-    decodetext.lower()
-    decodetextheaderlabel.lower()
-    decodetextshadow.lower()
-    copydb.lower()
-    copyeb.lower()
-    popupMenu.tkraise()
-    popupMenuheadershadow.tkraise()
-    popupMenuheader.tkraise()
-    popupMenutitle.tkraise()
-    selectedWindow.place(relx=0.094, rely=0.04)
+def settingsb(): # this is the command that is triggered when the setting tab button is pressed
+    encodetextheadershadow.lower() # Lowers the header above the encode text box's shadow
+    encodetextheader.lower() # Lowers the hedaer above the encode text box
+    encodetext.lower() # Lowers the encoding text box
+    encodetextheaderlabel.lower() # Lowers the text in the header above the encoder text box
+    encodetextshadow.lower() # Lowers the shadow behind the encoder text box
+    decodetextheadershadow.lower() # Lowers the header above the decode text box's shadow
+    decodetextheader.lower() # Lowers the header above the decode text box
+    decodetext.lower() # Lowers the decoding text box
+    decodetextheaderlabel.lower() # Lowers the text in the header above the decoder text box
+    decodetextshadow.lower() # Lowers the shadow behind the decoder text box
+    copydb.lower() # Lowers the copy button next to the decode text box
+    copyeb.lower() # Lowers the copy button next to the encode text box
+    popupMenu.tkraise() # Raises the dropdown menu
+    popupMenuheadershadow.tkraise() # Raises the dropdown menu header shadow
+    popupMenuheader.tkraise() # Raises the dropdown menu header
+    popupMenutitle.tkraise() # Raises the dropdown menu title
+    selectedWindow.place(relx=0.094, rely=0.04) # positions the current window indicator below the settings window
 
 ########################################################################################################################
 # General button commands                                                                                              #
 ########################################################################################################################
 
-def generalb():
-    encodetextshadow.tkraise()
-    decodetextshadow.tkraise()
-    encodetextheadershadow.tkraise()
-    encodetextheader.tkraise()
-    encodetext.tkraise()
-    encodetextheaderlabel.tkraise()
-    decodetextheadershadow.tkraise()
-    decodetextheader.tkraise()
-    decodetext.tkraise()
-    decodetextheaderlabel.tkraise()
-    copydb.tkraise()
-    copyeb.tkraise()
-    popupMenu.lower()
-    popupMenuheader.lower()
-    popupMenutitle.lower()
-    popupMenuheadershadow.lower()
-    selectedWindow.place(relx=0.004, rely=0.04)
+def generalb(): # this is the command that is triggered when the general button is triggered
+    encodetextshadow.tkraise() # Raises the encode text box shadow
+    decodetextshadow.tkraise() # Raises the decode text box shadow
+    encodetextheadershadow.tkraise() # Raises the encode text box header shadow
+    encodetextheader.tkraise() # Raises the encode text box header
+    encodetext.tkraise() # Raises the encode text box
+    encodetextheaderlabel.tkraise() # Raises the encode text box header label
+    decodetextheadershadow.tkraise() # Raises the decode text box header shadow
+    decodetextheader.tkraise() # Raises the decode text box header
+    decodetext.tkraise() # Raises the decode text box
+    decodetextheaderlabel.tkraise() # Raises the decode text box label
+    copydb.tkraise() # Raises the decode text box copy button
+    copyeb.tkraise() # Raises the encode text box copy button
+    popupMenu.lower() #  lowers the dropdown menu
+    popupMenuheader.lower() # lowers the dropdown menu header
+    popupMenutitle.lower() # lowers the dropdown menu title
+    popupMenuheadershadow.lower() # lowers the dropdown menu header shadow
+    selectedWindow.place(relx=0.004, rely=0.04) # positions the current window indicator below the general window
 ########################################################################################################################
 # Settings Page                                                                                                        #
 ########################################################################################################################
 
-popupMenu = tk.OptionMenu(root, tkvar, *Colours, command=colourConfirm)
-popupMenu.place(relx=0.202, rely=0.105)
-popupMenu.configure(bg=bgc)
+popupMenu = tk.OptionMenu(root, tkvar, *Colours, command=colourConfirm) # makes the dropdown menu
+popupMenu.place(relx=0.202, rely=0.105) # places the dropdown menu relative to the window
+popupMenu.configure(bg=bgc) # makes the background colour of the dropdown menu the same as the pages background
 
-popupMenuheader = tk.Frame(root, bg=hdc,width=130, height=31,) # makes box for the header above the encoder text box
+popupMenuheader = tk.Frame(root, bg=hdc,width=130, height=31,) # makes box for the header above the drop down menu
 popupMenuheader.place(relx=0.04, rely=0.1) # places the header relative to the window
 
-popupMenuheadershadow = tk.Frame(root, bg="black",width=130, height=31,) # makes box for the header above the encoder text box
-popupMenuheadershadow.place(relx=0.042, rely=0.105) # places the header relative to the window
+popupMenuheadershadow = tk.Frame(root, bg="black",width=130, height=31,) # makes shadow under the header above the drop down menu
+popupMenuheadershadow.place(relx=0.042, rely=0.105) # places the shadow relative to the window
 
-popupMenutitle = tk.Label(root, text="Choose a colour")
-popupMenutitle.place(relx=0.04, rely=0.105)
-popupMenutitle.configure(font=("Futura",15, "italic"),fg="white", bg=hdc)
+popupMenutitle = tk.Label(root, text="Choose a colour") # creates the label for the colour picker
+popupMenutitle.place(relx=0.04, rely=0.105) # places the label for the colour picker on the header
+popupMenutitle.configure(font=("Futura",15, "italic"),fg="white", bg=hdc) # changes the font, font colour and background colour of the label
 
-hider = tk.Frame(root, bg=bgc, width=800, height=600)
-hider.place(relx=0,rely=0)
+hider = tk.Frame(root, bg=bgc, width=800, height=600) # a frame for hiding the contents of the page which the user is not on
+hider.place(relx=0,rely=0) # places the hider
 
 ########################################################################################################################
 # Header                                                                                                               #
@@ -151,21 +151,21 @@ hider.place(relx=0,rely=0)
 trim = tk.Frame(root, bg=trimc,width=800, height=3,) # defines the size and colour of the pink trim
 trim.place(relx=0.0, rely=0.049) # places the trim relative to the window (this is why i disabled window resizing)
 
-f = open("user.cfg", "r")
-x = f.read()
-
 header = tk.Frame(root, bg=hdc,width=800,height=29) # sets toolbar size and colour
 header.grid(row=0,column=0,rowspan=29) # places toolbar at the top
 
-selectedWindow = tk.Frame(root, bg=trimc, width=69, height=2)
-selectedWindow.place(relx=0.004, rely=0.04)
+selectedWindow = tk.Frame(root, bg=trimc, width=69, height=2) # creates the selected window indicator
+selectedWindow.place(relx=0.004, rely=0.04) # places the selected window indicator
 
-if x != "" and x != "Default":
-    trim.configure(bg=x)
-    selectedWindow.configure(bg=x)
-else:
-    trim.configure(bg=trimc)
-    selectedWindow.configure(bg=trimc)
+f = open("user.cfg", "r") # opens user configuration (config) file with read only privilages
+x = f.read() # reads the contents of the file and names them "x"
+
+if x != "" and x != "Default": # if x isnt nothing and it also isnt "default",
+    trim.configure(bg=x) # change the colour of the trim and
+    selectedWindow.configure(bg=x) # the colour of the selected window indicator to what is in the config file
+else: # if x is nothing (config file empty) or "default"
+    trim.configure(bg=trimc) # set the colour of the trim,
+    selectedWindow.configure(bg=trimc) # and the selected window colour to the default (trimc)
 
 ########################################################################################################################
 # Header Buttons                                                                                                       #
@@ -236,8 +236,8 @@ def decodethetext( event ):
     inputdc = inputd.replace("F4", "a").replace("A4", "b").replace("A1", "c").replace("E3", "d").replace("B6","e").replace("D1", "f").replace("C4", "g").replace("B5", "h").replace("C2", "i").replace("D3", "j").replace("F3", "k").replace("E6", "l").replace("A2", "m").replace("D5", 'n').replace("B3", "o").replace("A6", "p").replace("D6","q").replace("B1", "r").replace("D2", "s").replace("B4", "t").replace("A5", "u").replace("B2", "v").replace("A3","w").replace("F5", "x").replace("C6", "y").replace("C1", "z").replace("4!"," ").replace("f4", "A").replace("a4", "B").replace("a1", "C").replace("e3", "D").replace("b6","E").replace("d1", "F").replace("c4", "G").replace("b5", "H").replace("c2", "I").replace("d3", "J").replace("f3", "K").replace("e6", "L").replace("a2", "M").replace("d5", 'N').replace("b3", "O").replace("a6", "P").replace("d6","Q").replace("b1", "R").replace("d2", "S").replace("b4", "T").replace("a5", "U").replace("b2", "V").replace("a3","W").replace("f5", "X").replace("c6", "Y").replace("c1", "Z")
     encodetext.insert('end', inputdc) #inserts encoded text in the decode box # replace algorithm ^
 
-decodetext.bind("<KeyRelease>", decodethetext)
-encodetext.bind("<KeyRelease>", encodethetext)
+decodetext.bind("<KeyRelease>", decodethetext) # binds the users key releases to the decodethetext command which performs the algorythm
+encodetext.bind("<KeyRelease>", encodethetext) # binds the users key releases to the encodethetext command. this makes the decode and encoding process realtime (converted as you type it)
 ########################################################################################################################
 # Copy decode function and button                                                                                        #
 ########################################################################################################################
