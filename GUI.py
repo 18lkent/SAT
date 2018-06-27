@@ -23,10 +23,11 @@ Indigo = "#4b0082" # indigo
 Violet = "#9400d3" # violet
 tkvar = tk.StringVar(root) # string variable for the dropdown menu for the colour changer
 Colours = ["Default", "Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet"] # colours in the dropdown menu
-tkvar.set('Default') # setting the default option in the colour picker
 tkvar2 = tk.StringVar(root)
 Themes = ["Default", "Light"]
 tkvar2.set("Default")
+tkvar.set("Default")
+
 ########################################################################################################################
 # Colour Picker                                                                                                        #
 ########################################################################################################################
@@ -35,50 +36,50 @@ def colourConfirm(new_value): # defines function "colourConfirm" with parameters
     if new_value == "Default": # if the value included equals default,
         trim.configure(bg=trimc) # change the trim colour
         selectedWindow.configure(bg=trimc) # and the current window indicator colour to the default,
-        f = open("user.cfg", "w") # open and
-        f.write(new_value) # write the selected value to the user.cfg file
-        f.close() # then close
+        f = open("user.cfg", "w")
+        f.write("#ff40e7")
+        f.close()
     elif new_value == "Red": # if the value included equals red,
         trim.configure(bg=Red) # change the trim colour
         selectedWindow.configure(bg=Red) # and the current window indicator colour to red,
         f = open("user.cfg", "w") # open and
-        f.write(new_value) # write the selected value to the user.cfg file
+        f.write("#ff0000") # write the selected value to the user.cfg file
         f.close() # then close || the following modules all work the same as the previous
     elif new_value == "Orange":
         trim.configure(bg=Orange)
         selectedWindow.configure(bg=Orange)
         f = open("user.cfg", "w")
-        f.write(new_value)
+        f.write("#ff7f00")
         f.close()
     elif new_value == "Yellow":
         trim.configure(bg=Yellow)
         selectedWindow.configure(bg=Yellow)
         f = open("user.cfg", "w")
-        f.write(new_value)
+        f.write("#ffff00")
         f.close()
     elif new_value == "Green":
         trim.configure(bg=Green)
         selectedWindow.configure(bg=Green)
         f = open("user.cfg", "w")
-        f.write(new_value)
+        f.write("#00ff00")
         f.close()
     elif new_value == "Blue":
         trim.configure(bg=Blue)
         selectedWindow.configure(bg=Blue)
         f = open("user.cfg", "w")
-        f.write(new_value)
+        f.write("#0000ff")
         f.close()
     elif new_value == "Indigo":
         trim.configure(bg=Indigo)
         selectedWindow.configure(bg=Indigo)
         f = open("user.cfg", "w")
-        f.write(new_value)
+        f.write("#9400d3")
         f.close()
     elif new_value == "Violet":
         trim.configure(bg=Violet)
         selectedWindow.configure(bg=Violet)
         f = open("user.cfg", "w")
-        f.write(new_value)
+        f.write("#9400d3")
         f.close()
 
 ########################################################################################################################
@@ -107,6 +108,13 @@ def themeconfirm(theme_value):
         themedropdownMenuheader.configure(bg=hdc)
         themedropdownMenu.configure(bg=bgc)
         themedropdownMenutitle.configure(bg=hdc, fg="white")
+        x = open("user.cfg", "r")
+        colour = x.read()
+        x.close()
+        f = open("user.cfg", "w")
+        f.write(colour+"\nDark")
+        f.close()
+
     elif theme_value == "Light":
         header.configure(bg=lighthdc)
         generalb.configure(highlightbackground=lighthdc)
@@ -128,6 +136,12 @@ def themeconfirm(theme_value):
         themedropdownMenuheader.configure(bg=lighthdc)
         themedropdownMenu.configure(bg=lightbgc)
         themedropdownMenutitle.configure(bg=lighthdc, fg="black")
+        x = open("user.cfg", "r")
+        colour = x.read()
+        x.close()
+        f = open("user.cfg", "w")
+        f.write(colour+"\nLight")
+        f.close()
 
 ########################################################################################################################
 # Settings button commands                                                                                             #
@@ -230,16 +244,6 @@ header.grid(row=0,column=0,rowspan=29) # places toolbar at the top
 
 selectedWindow = tk.Frame(root, bg=trimc, width=69, height=2) # creates the selected window indicator
 selectedWindow.place(relx=0.004, rely=0.04) # places the selected window indicator
-
-f = open("user.cfg", "r") # opens user configuration (config) file with read only privilages
-x = f.read() # reads the contents of the file and names them "x"
-
-if x != "" and x != "Default": # if x isnt nothing and it also isnt "default",
-    trim.configure(bg=x) # change the colour of the trim and
-    selectedWindow.configure(bg=x) # the colour of the selected window indicator to what is in the config file
-else: # if x is nothing (config file empty) or "default"
-    trim.configure(bg=trimc) # set the colour of the trim,
-    selectedWindow.configure(bg=trimc) # and the selected window colour to the default (trimc)
 
 ########################################################################################################################
 # Header Buttons                                                                                                       #
@@ -356,7 +360,25 @@ closeb.place(relx=0.9, rely=0.95, height=24, width=75) # places button and defin
 closeb.config(font=("Futura",15, "italic")) # configures text on the button
 
 ########################################################################################################################
+# User Config file                                                                                                     #
+########################################################################################################################
+
+with open('user.cfg', 'r') as f:
+    cfg = [line.strip() for line in f]
+colour = cfg[0]
+theme = cfg[1]
+if colour != "" and colour != "Default": # if x isnt nothing and it also isnt "default",
+    trim.configure(bg=colour) # change the colour of the trim and
+    selectedWindow.configure(bg=colour) # the colour of the selected window indicator to what is in the config file
+    themeconfirm(theme)
+else: # if x is nothing (config file empty) or "default"
+    trim.configure(bg=trimc) # set the colour of the trim,
+    selectedWindow.configure(bg=trimc) # and the selected window colour to the default (trimc)
+    themeconfirm(theme)
+
+########################################################################################################################
 # Main loop                                                                                                            #
 ########################################################################################################################
+
 
 root.mainloop() # starts mainloop
