@@ -31,55 +31,52 @@ tkvar.set("Default")
 # Colour Picker                                                                                                        #
 ########################################################################################################################
 
+def themesaver(colour):
+    x = open("user.cfg", "r")
+    theme = x.read()
+    theme1 = theme.strip("#ff40e7").strip("#ff0000").strip("#ff7f00").strip("#ffff00").strip("#00ff00").strip("#0000ff").strip("#9400d3").strip("#9400d3").strip("\n")
+    x.close()
+    f = open("user.cfg", "w")
+    f.write(colour+"\n"+theme1)
+    f.close()
+
+########################################################################################################################
+# Colour Picker                                                                                                        #
+########################################################################################################################
+
 def colourConfirm(new_value): # defines function "colourConfirm" with parameters "new_value"
     if new_value == "Default": # if the value included equals default,
         trim.configure(bg=trimc) # change the trim colour
         selectedWindow.configure(bg=trimc) # and the current window indicator colour to the default,
-        f = open("user.cfg", "w")
-        f.write("#ff40e7")
-        f.close()
+        themesaver("#ff40e7")
     elif new_value == "Red": # if the value included equals red,
         trim.configure(bg=Red) # change the trim colour
         selectedWindow.configure(bg=Red) # and the current window indicator colour to red,
-        f = open("user.cfg", "w") # open and
-        f.write("#ff0000") # write the selected value to the user.cfg file
-        f.close() # then close || the following modules all work the same as the previous
+        themesaver("#ff0000") # write the selected value to the user.cfg file
     elif new_value == "Orange":
         trim.configure(bg=Orange)
         selectedWindow.configure(bg=Orange)
-        f = open("user.cfg", "w")
-        f.write("#ff7f00")
-        f.close()
+        themesaver("#ff7f00")
     elif new_value == "Yellow":
         trim.configure(bg=Yellow)
         selectedWindow.configure(bg=Yellow)
-        f = open("user.cfg", "w")
-        f.write("#ffff00")
-        f.close()
+        themesaver("#ffff00")
     elif new_value == "Green":
         trim.configure(bg=Green)
         selectedWindow.configure(bg=Green)
-        f = open("user.cfg", "w")
-        f.write("#00ff00")
-        f.close()
+        themesaver("#00ff00")
     elif new_value == "Blue":
         trim.configure(bg=Blue)
         selectedWindow.configure(bg=Blue)
-        f = open("user.cfg", "w")
-        f.write("#0000ff")
-        f.close()
+        themesaver("#0000ff")
     elif new_value == "Indigo":
         trim.configure(bg=Indigo)
         selectedWindow.configure(bg=Indigo)
-        f = open("user.cfg", "w")
-        f.write("#9400d3")
-        f.close()
+        themesaver("#9400d3")
     elif new_value == "Violet":
         trim.configure(bg=Violet)
         selectedWindow.configure(bg=Violet)
-        f = open("user.cfg", "w")
-        f.write("#9400d3")
-        f.close()
+        themesaver("#9400d3")
 
 ########################################################################################################################
 # Theme Picker                                                                                                         #
@@ -109,9 +106,10 @@ def themeconfirm(theme_value):
         themedropdownMenutitle.configure(bg=hdc, fg="white")
         x = open("user.cfg", "r")
         colour = x.read()
+        colour1 = colour.strip("Light").strip("Dark").strip("\n")
         x.close()
         f = open("user.cfg", "w")
-        f.write(colour+"\nDark")
+        f.write(colour1+"\nDark")
         f.close()
 
     elif theme_value == "Light":
@@ -137,9 +135,10 @@ def themeconfirm(theme_value):
         themedropdownMenutitle.configure(bg=lighthdc, fg="black")
         x = open("user.cfg", "r")
         colour = x.read()
+        colour1 = colour.strip("Light").strip("Dark").strip("\n")
         x.close()
         f = open("user.cfg", "w")
-        f.write(colour+"\nLight")
+        f.write(colour1+"\nLight")
         f.close()
 
 ########################################################################################################################
