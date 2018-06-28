@@ -3,7 +3,6 @@ import tkinter as tk #imports tkinter module as tk
 ########################################################################################################################
 # Base Settings and Universal Assets                                                                                   #
 ########################################################################################################################
-
 root = tk.Tk()
 root.title("Encoder/Decoder") # gives title to gui
 root.geometry('800x600') # sets the window's size to 800px by 600px
@@ -362,19 +361,23 @@ closeb.config(font=("Futura",15, "italic")) # configures text on the button
 ########################################################################################################################
 # User Config file                                                                                                     #
 ########################################################################################################################
+try:
+    with open('user.cfg', 'r') as f:
+        cfg = [line.strip() for line in f]
+    colour = cfg[0]
+    theme = cfg[1]
+    if colour != "": # if x isnt nothing and it also isnt "default",
+        trim.configure(bg=colour)
+        selectedWindow.configure(bg=colour)
+        themeconfirm(theme)
+    else:
+        raise IndexError
+except IndexError:
+    print("Invalid Style detected in 'User.cfg', Setting to default...")
+    default = "Default"
+    colourConfirm("Default")
+    themeconfirm("Default")
 
-with open('user.cfg', 'r') as f:
-    cfg = [line.strip() for line in f]
-colour = cfg[0]
-theme = cfg[1]
-if colour != "" and colour != "Default": # if x isnt nothing and it also isnt "default",
-    trim.configure(bg=colour) # change the colour of the trim and
-    selectedWindow.configure(bg=colour) # the colour of the selected window indicator to what is in the config file
-    themeconfirm(theme)
-else: # if x is nothing (config file empty) or "default"
-    trim.configure(bg=trimc) # set the colour of the trim,
-    selectedWindow.configure(bg=trimc) # and the selected window colour to the default (trimc)
-    themeconfirm(theme)
 
 ########################################################################################################################
 # Main loop                                                                                                            #
