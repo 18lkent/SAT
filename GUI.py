@@ -20,25 +20,58 @@ Green = "#00ff00" # green
 Blue = "#0000ff" # blue
 Indigo = "#4b0082" # indigo
 Violet = "#9400d3" # violet
+Default = "Futura"
+Helvetica = "Helvetica"
+Trajan = "Trajan"
+Garamond = "Garamond"
+Bodoni = "Bodoni"
+Comic_Sans = "Comic Sans MS"
+Verdana = "Verdana"
 tkvar = tk.StringVar(root) # string variable for the dropdown menu for the colour changer
 Colours = ["Default", "Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet"] # colours in the dropdown menu
 tkvar2 = tk.StringVar(root)
 Themes = ["Default", "Light"]
+tkvar3 = tk.StringVar(root)
+Fonts = ["Futura", "Helvetica", "Trajan", "Garamond", "Bodoni", "Comic Sans", "Verdana"]
+tkvar3.set("Futura")
 tkvar2.set("Default")
 tkvar.set("Default")
 
+
 ########################################################################################################################
-# Colour Picker                                                                                                        #
+# Config Saver                                                                                                          #
 ########################################################################################################################
 
 def themesaver(colour):
-    x = open("user.cfg", "r")
-    theme = x.read()
-    theme1 = theme.strip("#ff40e7").strip("#ff0000").strip("#ff7f00").strip("#ffff00").strip("#00ff00").strip("#0000ff").strip("#9400d3").strip("#9400d3").strip("\n")
-    x.close()
-    f = open("user.cfg", "w")
-    f.write(colour+"\n"+theme1)
+    with open('user.cfg', 'r') as f:
+        cfg = [line.strip() for line in f]
+    theme = cfg[1]
+    font = cfg[2]
     f.close()
+    x = open("user.cfg", "w")
+    x.write(colour+"\n"+theme+"\n"+font)
+    x.close()
+
+
+def coloursaver(font):
+    with open('user.cfg', 'r') as f:
+        cfg = [line.strip() for line in f]
+    colour = cfg[0]
+    theme = cfg[1]
+    f.close()
+    x = open("user.cfg", "w")
+    x.write(colour+"\n"+theme+"\n"+font)
+    x.close()
+
+def fontsaver(theme):
+    with open('user.cfg', 'r') as f:
+        cfg = [line.strip() for line in f]
+    colour = cfg[0]
+    font = cfg[2]
+    f.close()
+    x = open("user.cfg", "w")
+    x.write(colour+"\n"+theme+"\n"+font)
+    x.close()
 
 ########################################################################################################################
 # Colour Picker                                                                                                        #
@@ -48,36 +81,126 @@ def colourConfirm(new_value): # defines function "colourConfirm" with parameters
     if new_value == "Default": # if the value included equals default,
         trim.configure(bg=trimc) # change the trim colour
         selectedWindow.configure(bg=trimc) # and the current window indicator colour to the default,
-        themesaver("#ff40e7")
+        themesaver("Default")
     elif new_value == "Red": # if the value included equals red,
         trim.configure(bg=Red) # change the trim colour
         selectedWindow.configure(bg=Red) # and the current window indicator colour to red,
-        themesaver("#ff0000") # write the selected value to the user.cfg file
+        themesaver("Red") # write the selected value to the user.cfg file
     elif new_value == "Orange":
         trim.configure(bg=Orange)
         selectedWindow.configure(bg=Orange)
-        themesaver("#ff7f00")
+        themesaver("Orange")
     elif new_value == "Yellow":
         trim.configure(bg=Yellow)
         selectedWindow.configure(bg=Yellow)
-        themesaver("#ffff00")
+        themesaver("Yellow")
     elif new_value == "Green":
         trim.configure(bg=Green)
         selectedWindow.configure(bg=Green)
-        themesaver("#00ff00")
+        themesaver("Green")
     elif new_value == "Blue":
         trim.configure(bg=Blue)
         selectedWindow.configure(bg=Blue)
-        themesaver("#0000ff")
+        themesaver("Blue")
     elif new_value == "Indigo":
         trim.configure(bg=Indigo)
         selectedWindow.configure(bg=Indigo)
-        themesaver("#9400d3")
+        themesaver("Indigo")
     elif new_value == "Violet":
         trim.configure(bg=Violet)
         selectedWindow.configure(bg=Violet)
-        themesaver("#9400d3")
+        themesaver("Violet")
 
+########################################################################################################################
+# Font Picker                                                                                                         #
+########################################################################################################################
+
+def fontconfirm(font_value):
+    if font_value == "Futura":
+        colourdropdownMenutitle.configure(font=("Futura", 15, "italic"))
+        fontdropdownMenutitle.configure(font=("Futura", 15, "italic"))
+        themedropdownMenutitle.configure(font=("Futura", 15, "italic"))
+        generalb.configure(font=("Futura", 15, "italic"))
+        settingsb.configure(font=("Futura", 15, "italic"))
+        copyeb.configure(font=("Futura", 15, "italic"))
+        copydb.configure(font=("Futura", 15, "italic"))
+        closeb.configure(font=("Futura", 15, "italic"))
+        encodetextheaderlabel.configure(font=("Futura", 15, "italic"))
+        decodetextheaderlabel.configure(font=("Futura", 15, "italic"))
+        coloursaver("Futura")
+
+    elif font_value == "Helvetica":
+        colourdropdownMenutitle.configure(font=("Helvetica", 15, "italic"))
+        fontdropdownMenutitle.configure(font=("Helvetica", 15, "italic"))
+        themedropdownMenutitle.configure(font=("Helvetica", 15, "italic"))
+        generalb.configure(font=("Helvetica", 15, "italic"))
+        settingsb.configure(font=("Helvetica", 15, "italic"))
+        copyeb.configure(font=("Helvetica", 15, "italic"))
+        copydb.configure(font=("Helvetica", 15, "italic"))
+        closeb.configure(font=("Helvetica", 15, "italic"))
+        encodetextheaderlabel.configure(font=("Helvetica", 15, "italic"))
+        decodetextheaderlabel.configure(font=("Helvetica", 15, "italic"))
+        coloursaver("Helvetica")
+    elif font_value == "Trajan":
+        colourdropdownMenutitle.configure(font=("Trajan", 15, "italic"))
+        fontdropdownMenutitle.configure(font=("Trajan", 15, "italic"))
+        themedropdownMenutitle.configure(font=("Trajan", 15, "italic"))
+        generalb.configure(font=("Trajan", 13, "italic"))
+        settingsb.configure(font=("Trajan", 13, "italic"))
+        copyeb.configure(font=("Trajan", 15, "italic"))
+        copydb.configure(font=("Trajan", 15, "italic"))
+        closeb.configure(font=("Trajan", 15, "italic"))
+        encodetextheaderlabel.configure(font=("Trajan", 15, "italic"))
+        decodetextheaderlabel.configure(font=("Trajan", 15, "italic"))
+        coloursaver("Trajan")
+    elif font_value == "Garamond":
+        colourdropdownMenutitle.configure(font=("Garamond", 16, "italic"))
+        fontdropdownMenutitle.configure(font=("Garamond", 16, "italic"))
+        themedropdownMenutitle.configure(font=("Garamond", 16, "italic"))
+        generalb.configure(font=("Garamond", 16, "italic"))
+        settingsb.configure(font=("Garamond", 16, "italic"))
+        copyeb.configure(font=("Garamond", 16, "italic"))
+        copydb.configure(font=("Garamond", 16, "italic"))
+        closeb.configure(font=("Garamond", 16, "italic"))
+        encodetextheaderlabel.configure(font=("Garamond", 15, "italic"))
+        decodetextheaderlabel.configure(font=("Garamond", 15, "italic"))
+        coloursaver("Garamond")
+    elif font_value == "Bodoni":
+        colourdropdownMenutitle.configure(font=("Bodoni", 15, "italic"))
+        fontdropdownMenutitle.configure(font=("Bodoni", 15, "italic"))
+        themedropdownMenutitle.configure(font=("Bodoni", 15, "italic"))
+        generalb.configure(font=("Bodoni", 13, "italic"))
+        settingsb.configure(font=("Bodoni", 13, "italic"))
+        copyeb.configure(font=("Bodoni", 15, "italic"))
+        copydb.configure(font=("Bodoni", 15, "italic"))
+        closeb.configure(font=("Bodoni", 15, "italic"))
+        encodetextheaderlabel.configure(font=("Bodoni", 15, "italic"))
+        decodetextheaderlabel.configure(font=("Bodoni", 15, "italic"))
+        coloursaver("Bodoni")
+    elif font_value == "Comic Sans":
+        colourdropdownMenutitle.configure(font=("Comic Sans MS", 15, "italic"))
+        fontdropdownMenutitle.configure(font=("Comic Sans MS", 15, "italic"))
+        themedropdownMenutitle.configure(font=("Comic Sans MS", 15, "italic"))
+        generalb.configure(font=("Comic Sans MS", 13, "italic"))
+        settingsb.configure(font=("Comic Sans MS", 13, "italic"))
+        copyeb.configure(font=("Comic Sans MS", 15, "italic"))
+        copydb.configure(font=("Comic Sans MS", 15, "italic"))
+        closeb.configure(font=("Comic Sans MS", 15, "italic"))
+        encodetextheaderlabel.configure(font=("Comic Sans MS", 15, "italic"))
+        decodetextheaderlabel.configure(font=("Comic Sans MS", 15, "italic"))
+        coloursaver("Comic Sans")
+    elif font_value == "Verdana":
+        colourdropdownMenutitle.configure(font=("Verdana", 15, "italic"))
+        fontdropdownMenutitle.configure(font=("Verdana", 15, "italic"))
+        themedropdownMenutitle.configure(font=("Verdana", 15, "italic"))
+        generalb.configure(font=("Verdana", 13, "italic"))
+        settingsb.configure(font=("Verdana", 13, "italic"))
+        copyeb.configure(font=("Verdana", 15, "italic"))
+        copydb.configure(font=("Verdana", 15, "italic"))
+        closeb.configure(font=("Verdana", 15, "italic"))
+        encodetextheaderlabel.configure(font=("Verdana", 15, "italic"))
+        decodetextheaderlabel.configure(font=("Verdana", 15, "italic"))
+        coloursaver("Verdana")
 ########################################################################################################################
 # Theme Picker                                                                                                         #
 ########################################################################################################################
@@ -104,13 +227,10 @@ def themeconfirm(theme_value):
         themedropdownMenuheader.configure(bg=hdc)
         themedropdownMenu.configure(bg=bgc)
         themedropdownMenutitle.configure(bg=hdc, fg="white")
-        x = open("user.cfg", "r")
-        colour = x.read()
-        colour1 = colour.strip("Light").strip("Dark").strip("\n")
-        x.close()
-        f = open("user.cfg", "w")
-        f.write(colour1+"\nDark")
-        f.close()
+        fontdropdownMenutitle.configure(bg=hdc, fg="white")
+        fontdropdownMenu.configure(bg=bgc)
+        fontdropdownMenuheader.configure(bg=hdc)
+        fontsaver("Default")
 
     elif theme_value == "Light":
         header.configure(bg=lighthdc)
@@ -133,13 +253,11 @@ def themeconfirm(theme_value):
         themedropdownMenuheader.configure(bg=lighthdc)
         themedropdownMenu.configure(bg=lightbgc)
         themedropdownMenutitle.configure(bg=lighthdc, fg="black")
-        x = open("user.cfg", "r")
-        colour = x.read()
-        colour1 = colour.strip("Light").strip("Dark").strip("\n")
-        x.close()
-        f = open("user.cfg", "w")
-        f.write(colour1+"\nLight")
-        f.close()
+        fontdropdownMenutitle.configure(bg=lighthdc, fg="black")
+        fontdropdownMenu.configure(bg=lightbgc)
+        fontdropdownMenuheader.configure(bg=lighthdc)
+        fontsaver("Light")
+
 
 ########################################################################################################################
 # Settings button commands                                                                                             #
@@ -166,6 +284,10 @@ def settingsb(): # this is the command that is triggered when the setting tab bu
     themedropdownMenuheadershadow.tkraise()
     themedropdownMenuheader.tkraise()
     themedropdownMenutitle.tkraise()
+    fontdropdownMenu.tkraise()
+    fontdropdownMenuheadershadow.tkraise()
+    fontdropdownMenuheader.tkraise()
+    fontdropdownMenutitle.tkraise()
     selectedWindow.place(relx=0.094, rely=0.04) # positions the current window indicator below the settings window
 
 ########################################################################################################################
@@ -193,6 +315,10 @@ def generalb(): # this is the command that is triggered when the general button 
     themedropdownMenuheadershadow.lower()
     themedropdownMenuheader.lower()
     themedropdownMenutitle.lower()
+    fontdropdownMenu.lower()
+    fontdropdownMenuheadershadow.lower()
+    fontdropdownMenuheader.lower()
+    fontdropdownMenutitle.lower()
     selectedWindow.place(relx=0.004, rely=0.04) # positions the current window indicator below the general window
 
 ########################################################################################################################
@@ -226,6 +352,20 @@ themedropdownMenuheadershadow.place(relx=0.042, rely=0.205) # places the shadow 
 themedropdownMenutitle = tk.Label(root, text="Choose a theme") # creates the label for the colour picker
 themedropdownMenutitle.place(relx=0.04, rely=0.205) # places the label for the colour picker on the header
 themedropdownMenutitle.configure(font=("Futura",15, "italic"),fg="white", bg=hdc) # changes the font, font colour and background colour of the label
+
+fontdropdownMenutitle = tk.Label(root, text="Choose a font") # creates the label for the colour picker
+fontdropdownMenutitle.place(relx=0.04, rely=0.305) # places the label for the colour picker on the header
+fontdropdownMenutitle.configure(font=("Futura",15, "italic"),fg="white", bg=hdc) # changes the font, font colour and background colour of the label
+
+fontdropdownMenu = tk.OptionMenu(root, tkvar3, *Fonts, command=fontconfirm) # makes the dropdown menu
+fontdropdownMenu.place(relx=0.202, rely=0.305) # places the dropdown menu relative to the window
+fontdropdownMenu.configure(bg=bgc) # makes the background colour of the dropdown menu the same as the pages background
+
+fontdropdownMenuheader = tk.Frame(root, bg=hdc,width=130, height=31,) # makes box for the header above the drop down menu
+fontdropdownMenuheader.place(relx=0.04, rely=0.3) # places the header relative to the window
+
+fontdropdownMenuheadershadow = tk.Frame(root, bg="black",width=130, height=31,) # makes shadow under the header above the drop down menu
+fontdropdownMenuheadershadow.place(relx=0.042, rely=0.305) # places the shadow relative to the window
 
 hider = tk.Frame(root, bg=bgc, width=800, height=600) # a frame for hiding the contents of the page which the user is not on
 hider.place(relx=0,rely=0) # places the hider
@@ -272,7 +412,7 @@ encodetextheaderlabel.config(bg=hdc,fg="white") # makes the text white and the b
 encodetextshadow = tk.Frame(root, height=387, width=341,bg = "black") # creates the text box
 encodetextshadow.place(relx=0.052, rely=0.170) # places the text box on the screen relative to the window colour as the text box
 
-encodetext = tk.Text(root, height=25, width=47,bg = hdc, fg="white", borderwidth=2) # creates the text box
+encodetext = tk.Text(root,height=25, width=47,bg = hdc, fg="white", borderwidth=2) # creates the text box
 encodetext.place(relx=0.05, rely=0.165) # places the text box on the screen relative to the window
 encodetext.config(highlightbackground=hdc) # makes the highlight border the same colour as the text box
 
@@ -365,10 +505,15 @@ try:
         cfg = [line.strip() for line in f]
     colour = cfg[0]
     theme = cfg[1]
+    font = cfg[2]
     if colour != "": # if x isnt nothing and it also isnt "default",
         trim.configure(bg=colour)
         selectedWindow.configure(bg=colour)
         themeconfirm(theme)
+        fontconfirm(font)
+        tkvar3.set(font)
+        tkvar2.set(theme)
+        tkvar.set(colour)
     else:
         raise IndexError
 except IndexError:
@@ -376,6 +521,7 @@ except IndexError:
     default = "Default"
     colourConfirm("Default")
     themeconfirm("Default")
+    fontconfirm("Futura")
 
 
 ########################################################################################################################
