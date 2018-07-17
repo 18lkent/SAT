@@ -13,6 +13,7 @@ hdc = "#272727" # default header colour (darker grey)
 trimc = "#ff40e7" # default trim colour (Pink)
 lightbgc = "#CDCDCD"
 lighthdc = "#AAAAAA"
+Default = "#ff40e7"
 Red = "#ff0000" # red
 Orange = "#ff7f00" # orange
 Yellow = "#ffff00" # yellow
@@ -20,7 +21,7 @@ Green = "#00ff00" # green
 Blue = "#0000ff" # blue
 Indigo = "#4b0082" # indigo
 Violet = "#9400d3" # violet
-Default = "Futura"
+Defaultf = "Futura"
 Helvetica = "Helvetica"
 Trajan = "Trajan"
 Garamond = "Garamond"
@@ -30,16 +31,53 @@ Verdana = "Verdana"
 tkvar = tk.StringVar(root) # string variable for the dropdown menu for the colour changer
 Colours = ["Default", "Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet"] # colours in the dropdown menu
 tkvar2 = tk.StringVar(root)
-Themes = ["Default", "Light"]
+Themes = ["Dark", "Light"]
 tkvar3 = tk.StringVar(root)
 Fonts = ["Futura", "Helvetica", "Trajan", "Garamond", "Bodoni", "Comic Sans", "Verdana"]
 tkvar3.set("Futura")
-tkvar2.set("Default")
+tkvar2.set("Dark")
 tkvar.set("Default")
 
+########################################################################################################################
+# Default Set                                                                                                        #
+########################################################################################################################
+
+def default_all_set():
+    f = open("user.cfg", "w")
+    f.write("Default\nDark\nFutura")
+
+def default_colour_set():
+    with open('user.cfg', 'r') as f:
+        cfg = [line.strip() for line in f]
+    theme = cfg[1]
+    font = cfg[2]
+    f.close()
+    x = open("user.cfg", "w")
+    x.write("Default\n"+theme+"\n"+font)
+    x.close()
+
+def default_theme_set():
+    with open('user.cfg', 'r') as f:
+        cfg = [line.strip() for line in f]
+    colour = cfg[0]
+    font = cfg[2]
+    f.close()
+    x = open("user.cfg", "w")
+    x.write(colour+"\nDark\n"+font)
+    x.close()
+
+def default_font_set():
+    with open('user.cfg', 'r') as f:
+        cfg = [line.strip() for line in f]
+    theme = cfg[1]
+    colour = cfg[0]
+    f.close()
+    x = open("user.cfg", "w")
+    x.write(colour+"\n"+theme+"\nFutura")
+    x.close()
 
 ########################################################################################################################
-# Config Saver                                                                                                          #
+# Config Saver                                                                                                         #
 ########################################################################################################################
 
 def themesaver(colour):
@@ -116,7 +154,19 @@ def colourConfirm(new_value): # defines function "colourConfirm" with parameters
 ########################################################################################################################
 
 def fontconfirm(font_value):
-    if font_value == "Futura":
+    if font_value == "Default":
+        colourdropdownMenutitle.configure(font=("Futura", 15, "italic"))
+        fontdropdownMenutitle.configure(font=("Futura", 15, "italic"))
+        themedropdownMenutitle.configure(font=("Futura", 15, "italic"))
+        generalb.configure(font=("Futura", 15, "italic"))
+        settingsb.configure(font=("Futura", 15, "italic"))
+        copyeb.configure(font=("Futura", 15, "italic"))
+        copydb.configure(font=("Futura", 15, "italic"))
+        closeb.configure(font=("Futura", 15, "italic"))
+        encodetextheaderlabel.configure(font=("Futura", 15, "italic"))
+        decodetextheaderlabel.configure(font=("Futura", 15, "italic"))
+        coloursaver("Defaultf")
+    elif font_value == "Futura":
         colourdropdownMenutitle.configure(font=("Futura", 15, "italic"))
         fontdropdownMenutitle.configure(font=("Futura", 15, "italic"))
         themedropdownMenutitle.configure(font=("Futura", 15, "italic"))
@@ -128,7 +178,6 @@ def fontconfirm(font_value):
         encodetextheaderlabel.configure(font=("Futura", 15, "italic"))
         decodetextheaderlabel.configure(font=("Futura", 15, "italic"))
         coloursaver("Futura")
-
     elif font_value == "Helvetica":
         colourdropdownMenutitle.configure(font=("Helvetica", 15, "italic"))
         fontdropdownMenutitle.configure(font=("Helvetica", 15, "italic"))
@@ -206,7 +255,7 @@ def fontconfirm(font_value):
 ########################################################################################################################
 
 def themeconfirm(theme_value):
-    if theme_value == "Default":
+    if theme_value == "Dark":
         header.configure(bg=hdc)
         generalb.configure(highlightbackground=hdc)
         settingsb.configure(highlightbackground=hdc)
@@ -230,7 +279,7 @@ def themeconfirm(theme_value):
         fontdropdownMenutitle.configure(bg=hdc, fg="white")
         fontdropdownMenu.configure(bg=bgc)
         fontdropdownMenuheader.configure(bg=hdc)
-        fontsaver("Default")
+        fontsaver("Dark")
 
     elif theme_value == "Light":
         header.configure(bg=lighthdc)
@@ -506,22 +555,30 @@ try:
     colour = cfg[0]
     theme = cfg[1]
     font = cfg[2]
-    if colour != "": # if x isnt nothing and it also isnt "default",
+    if colour == "Default":
+        colourConfirm(Default)
+    elif colour in Colours: # if x isnt nothing and it also isnt "default"
         trim.configure(bg=colour)
         selectedWindow.configure(bg=colour)
-        themeconfirm(theme)
-        fontconfirm(font)
-        tkvar3.set(font)
-        tkvar2.set(theme)
         tkvar.set(colour)
-    else:
-        raise IndexError
+        if theme != "":  # if x isnt nothing and it also isnt "default"
+            themeconfirm(theme)
+            tkvar2.set(theme)
+            if font != "":  # if x isnt nothing and it also isnt "default"
+                fontconfirm(font)
+                tkvar3.set(font)
+            else:
+                print("Invalid Font detected in 'user.cfg, Setting to default...'")
+                default_font_set()
+        else:
+            print("Invalid Theme detected in 'user.cfg, Setting to default...'")
+            default_theme_set()
+    elif colour not in Colours:
+        print("Invalid Colour detected in 'user.cfg, Setting to default...'")
+        default_colour_set()
 except IndexError:
     print("Invalid Style detected in 'User.cfg', Setting to default...")
-    default = "Default"
-    colourConfirm("Default")
-    themeconfirm("Default")
-    fontconfirm("Futura")
+    default_all_set()
 
 
 ########################################################################################################################
