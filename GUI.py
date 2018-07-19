@@ -29,7 +29,7 @@ Bodoni = "Bodoni"
 Comic_Sans = "Comic Sans MS"
 Verdana = "Verdana"
 tkvar = tk.StringVar(root) # string variable for the dropdown menu for the colour changer
-Colours = ["Default", "Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet"] # colours in the dropdown menu
+Colours = ["Default", "Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet", "Custom"] # colours in the dropdown menu
 tkvar2 = tk.StringVar(root)
 Themes = ["Dark", "Light"]
 tkvar3 = tk.StringVar(root)
@@ -120,34 +120,59 @@ def colourConfirm(new_value): # defines function "colourConfirm" with parameters
         trim.configure(bg=trimc) # change the trim colour
         selectedWindow.configure(bg=trimc) # and the current window indicator colour to the default,
         themesaver("Default")
+        customcolourtext.lower()
     elif new_value == "Red": # if the value included equals red,
         trim.configure(bg=Red) # change the trim colour
         selectedWindow.configure(bg=Red) # and the current window indicator colour to red,
         themesaver("Red") # write the selected value to the user.cfg file
+        customcolourtext.lower()
     elif new_value == "Orange":
         trim.configure(bg=Orange)
         selectedWindow.configure(bg=Orange)
         themesaver("Orange")
+        customcolourtext.lower()
     elif new_value == "Yellow":
         trim.configure(bg=Yellow)
         selectedWindow.configure(bg=Yellow)
         themesaver("Yellow")
+        customcolourtext.lower()
     elif new_value == "Green":
         trim.configure(bg=Green)
         selectedWindow.configure(bg=Green)
         themesaver("Green")
+        customcolourtext.lower()
     elif new_value == "Blue":
         trim.configure(bg=Blue)
         selectedWindow.configure(bg=Blue)
         themesaver("Blue")
+        customcolourtext.lower()
     elif new_value == "Indigo":
         trim.configure(bg=Indigo)
         selectedWindow.configure(bg=Indigo)
         themesaver("Indigo")
+        customcolourtext.lower()
     elif new_value == "Violet":
         trim.configure(bg=Violet)
         selectedWindow.configure(bg=Violet)
         themesaver("Violet")
+        customcolourtext.lower()
+    elif new_value == "Custom":
+        customcolour()
+
+########################################################################################################################
+# Custom Hex Colour Selector                                                                                           #
+########################################################################################################################
+
+def customcolour():
+    customcolourtext.tkraise()
+
+def getcustom( event ):
+    customcolour = customcolourtext.get("1.0", 'end-1c')
+    customcolour = str(customcolour)
+    if len(customcolour) < 5 and len(customcolour) > 3 or len(customcolour) < 6 and len(customcolour) > 8:
+        trim.configure(bg=customcolour)
+        selectedWindow.configure(bg=customcolour)
+        themesaver(customcolour)
 
 ########################################################################################################################
 # Font Picker                                                                                                         #
@@ -416,6 +441,11 @@ fontdropdownMenuheader.place(relx=0.04, rely=0.3) # places the header relative t
 fontdropdownMenuheadershadow = tk.Frame(root, bg="black",width=130, height=31,) # makes shadow under the header above the drop down menu
 fontdropdownMenuheadershadow.place(relx=0.042, rely=0.305) # places the shadow relative to the window
 
+customcolourtext = tk.Text(root,height=1, width=7,bg="white", fg="black", borderwidth=2) # creates the label for the colour picker
+customcolourtext.place(relx=0.34, rely=0.105) # places the label for the colour picker on the header
+
+customcolourtext.bind("<KeyRelease>", getcustom)
+
 hider = tk.Frame(root, bg=bgc, width=800, height=600) # a frame for hiding the contents of the page which the user is not on
 hider.place(relx=0,rely=0) # places the hider
 
@@ -553,10 +583,15 @@ try:
     with open('user.cfg', 'r') as f:
         cfg = [line.strip() for line in f]
     colour = cfg[0]
+    first = colour[0]
     theme = cfg[1]
     font = cfg[2]
     if colour == "Default":
         colourConfirm(Default)
+    elif first == "#":
+        trim.configure(bg=colour)
+        selectedWindow.configure(bg=colour)
+        tkvar.set(colour)
     elif colour in Colours: # if x isnt nothing and it also isnt "default"
         trim.configure(bg=colour)
         selectedWindow.configure(bg=colour)
