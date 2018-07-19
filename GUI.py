@@ -169,7 +169,7 @@ def customcolour():
 def getcustom( event ):
     customcolour = customcolourtext.get("1.0", 'end-1c')
     customcolour = str(customcolour)
-    if len(customcolour) < 5 and len(customcolour) > 3 or len(customcolour) < 6 and len(customcolour) > 8:
+    if len(customcolour) < 5 and len(customcolour) > 3 or len(customcolour) < 8 and len(customcolour) > 6:
         trim.configure(bg=customcolour)
         selectedWindow.configure(bg=customcolour)
         themesaver(customcolour)
