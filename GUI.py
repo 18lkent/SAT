@@ -11,9 +11,9 @@ bgc = "#515151" # default background colour (dark grey)
 root.configure(bg=bgc) # sets windows background colour as dark grey
 hdc = "#272727" # default header colour (darker grey)
 trimc = "#ff40e7" # default trim colour (Pink)
-lightbgc = "#CDCDCD"
-lighthdc = "#AAAAAA"
-Default = "#ff40e7"
+lightbgc = "#CDCDCD" # light grey background colour (for light theme)
+lighthdc = "#AAAAAA" # light grey hearder colour (for light theme)
+Default = "#ff40e7" # default pink colour
 Red = "#ff0000" # red
 Orange = "#ff7f00" # orange
 Yellow = "#ffff00" # yellow
@@ -21,8 +21,8 @@ Green = "#00ff00" # green
 Blue = "#0000ff" # blue
 Indigo = "#4b0082" # indigo
 Violet = "#9400d3" # violet
-Defaultf = "Futura"
-Helvetica = "Helvetica"
+Defaultf = "Futura" # default font
+Helvetica = "Helvetica" # fonts
 Trajan = "Trajan"
 Garamond = "Garamond"
 Bodoni = "Bodoni"
@@ -30,64 +30,84 @@ Comic_Sans = "Comic Sans MS"
 Verdana = "Verdana"
 tkvar = tk.StringVar(root) # string variable for the dropdown menu for the colour changer
 Colours = ["Default", "Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet", "Custom"] # colours in the dropdown menu
-tkvar2 = tk.StringVar(root)
-Themes = ["Dark", "Light"]
-tkvar3 = tk.StringVar(root)
+tkvar2 = tk.StringVar(root) # string variable for the dropdown menu of the themes
+Themes = ["Dark", "Light"] # list of themes
+tkvar3 = tk.StringVar(root) # string var for the dropdown menu of the fonts
 Fonts = ["Futura", "Helvetica", "Trajan", "Garamond", "Bodoni", "Comic Sans", "Verdana"]
-tkvar3.set("Futura")
-tkvar2.set("Dark")
-tkvar.set("Default")
+tkvar3.set("Futura") # setting the default Font
+tkvar2.set("Dark") # setting the default theme
+tkvar.set("Default") # setting the default colour
 
 ########################################################################################################################
 # Default Set                                                                                                        #
 ########################################################################################################################
 
 def default_all_set():
-    f = open("user.cfg", "w")
-    f.write("Default\nDark\nFutura")
+    f = open("user.cfg", "w") # opens "user.cfg" file
+    f.write("Default\nDark\nFutura\nDefault_key") # rewrites everything in the config file to the default
 
 def default_colour_set():
-    with open('user.cfg', 'r') as f:
-        cfg = [line.strip() for line in f]
-    theme = cfg[1]
-    font = cfg[2]
-    f.close()
-    x = open("user.cfg", "w")
-    x.write("Default\n"+theme+"\n"+font)
-    x.close()
+    with open('user.cfg', 'r') as f: # opens the "user.cfg" file as f
+        cfg = [line.strip() for line in f] # strip "" for each line in f
+    theme = cfg[1] # theme = second line in user.cfg file
+    font = cfg[2] # font = third line in user.cfg file
+    key = cfg[3]
+    f.close() # close file
+    x = open("user.cfg", "w") # open user.cfg
+    x.write("Default\n"+theme+"\n"+font+"\n"+key) # write new default colour in user.cfg
+    x.close() # close user.cfg
 
 def default_theme_set():
-    with open('user.cfg', 'r') as f:
-        cfg = [line.strip() for line in f]
-    colour = cfg[0]
-    font = cfg[2]
-    f.close()
-    x = open("user.cfg", "w")
-    x.write(colour+"\nDark\n"+font)
-    x.close()
+    with open('user.cfg', 'r') as f: # opens the "user.cfg" file as f
+        cfg = [line.strip() for line in f] # strip "" for each line in f
+    colour = cfg[0] # colour = first line in user.cfg file
+    font = cfg[2] # font = third line in user.cfg file
+    key = cfg[3]
+    f.close() # close user.cfg
+    x = open("user.cfg", "w") # open user.cfg
+    x.write(colour+"\nDark\n"+font+"\n"+key) # writes default theme
+    x.close() # closes user.cfg
 
 def default_font_set():
-    with open('user.cfg', 'r') as f:
-        cfg = [line.strip() for line in f]
-    theme = cfg[1]
-    colour = cfg[0]
-    f.close()
-    x = open("user.cfg", "w")
-    x.write(colour+"\n"+theme+"\nFutura")
-    x.close()
+    with open('user.cfg', 'r') as f: # opes the user.cfg file as f
+        cfg = [line.strip() for line in f] # strip "" for each line in f
+    theme = cfg[1] # theme = second line in user.cfg
+    colour = cfg[0] # colour = first colour in user.cfg
+    key = cfg[3]
+    f.close() # close user.cfg
+    x = open("user.cfg", "w") # opens user.cfg
+    x.write(colour+"\n"+theme+"\nFutura"+"\n"+key) # writes default font
+    x.close() # closes user.cfg
+
+def default_key_set():
+    with open('user.cfg', 'r') as f: # opes the user.cfg file as f
+        cfg = [line.strip() for line in f] # strip "" for each line in f
+    theme = cfg[1] # theme = second line in user.cfg
+    colour = cfg[0] # colour = first colour in user.cfg
+    font = cfg[2]
+    f.close() # close user.cfg
+    x = open("user.cfg", "w") # opens user.cfg
+    x.write(colour+"\n"+theme+"\n"+font+"Default_key") # writes default font
+    x.close() # closes user.cfg
+
+########################################################################################################################
+# encryption key                                                                                                       #
+########################################################################################################################
+
 
 ########################################################################################################################
 # Config Saver                                                                                                         #
 ########################################################################################################################
 
 def themesaver(colour):
-    with open('user.cfg', 'r') as f:
-        cfg = [line.strip() for line in f]
-    theme = cfg[1]
+    with open('user.cfg', 'r') as f: #opens user.cfg as "f"
+        cfg = [line.strip() for line in f] # strip "" for each line in f
+    theme = cfg[1] #
     font = cfg[2]
+    key = cfg[3]
     f.close()
     x = open("user.cfg", "w")
-    x.write(colour+"\n"+theme+"\n"+font)
+    x.write(colour+"\n"+theme+"\n"+font+"\n"+key)
     x.close()
 
 
@@ -96,9 +116,10 @@ def coloursaver(font):
         cfg = [line.strip() for line in f]
     colour = cfg[0]
     theme = cfg[1]
+    key = cfg[3]
     f.close()
     x = open("user.cfg", "w")
-    x.write(colour+"\n"+theme+"\n"+font)
+    x.write(colour+"\n"+theme+"\n"+font+"\n"+key)
     x.close()
 
 def fontsaver(theme):
@@ -106,9 +127,22 @@ def fontsaver(theme):
         cfg = [line.strip() for line in f]
     colour = cfg[0]
     font = cfg[2]
+    key = cfg[3]
     f.close()
     x = open("user.cfg", "w")
-    x.write(colour+"\n"+theme+"\n"+font)
+    x.write(colour+"\n"+theme+"\n"+font+"\n"+key)
+    x.close()
+
+def keysaver():
+    key = keytext.get("1.0", 'end-1c')
+    with open('user.cfg', 'r') as f:
+        cfg = [line.strip() for line in f]
+    colour = cfg[0]
+    theme = cfg[1]
+    font = cfg[2]
+    f.close()
+    x = open("user.cfg", "w")
+    x.write(colour+"\n"+theme+"\n"+font+"\n"+key)
     x.close()
 
 ########################################################################################################################
@@ -362,6 +396,9 @@ def settingsb(): # this is the command that is triggered when the setting tab bu
     fontdropdownMenuheadershadow.tkraise()
     fontdropdownMenuheader.tkraise()
     fontdropdownMenutitle.tkraise()
+    keytext.tkraise()
+    keylabel.tkraise()
+    keyconfirmbutton.tkraise()
     selectedWindow.place(relx=0.094, rely=0.04) # positions the current window indicator below the settings window
 
 ########################################################################################################################
@@ -393,6 +430,9 @@ def generalb(): # this is the command that is triggered when the general button 
     fontdropdownMenuheadershadow.lower()
     fontdropdownMenuheader.lower()
     fontdropdownMenutitle.lower()
+    keytext.lower()
+    keylabel.lower()
+    keyconfirmbutton.lower()
     selectedWindow.place(relx=0.004, rely=0.04) # positions the current window indicator below the general window
 
 ########################################################################################################################
@@ -445,6 +485,17 @@ customcolourtext = tk.Text(root,height=1, width=7,bg="white", fg="black", border
 customcolourtext.place(relx=0.34, rely=0.105) # places the label for the colour picker on the header
 
 customcolourtext.bind("<KeyRelease>", getcustom)
+
+keylabel = tk.Label(root, text="Key:")
+keylabel.place(relx=0.50, rely=0.105)
+keylabel.configure(font=("Futura",15, "italic"),fg="white", bg=hdc)
+
+keytext = tk.Text(root, height=1, width=24, bg=hdc, fg="white", borderwidth=0)
+keytext.place(relx=0.55, rely=0.105)
+keytext.config(highlightbackground=hdc)
+
+keyconfirmbutton = tk.Button(root, text="Confirm", command=keysaver)
+keyconfirmbutton.place(relx=0.78, rely=0.105)
 
 hider = tk.Frame(root, bg=bgc, width=800, height=600) # a frame for hiding the contents of the page which the user is not on
 hider.place(relx=0,rely=0) # places the hider
@@ -517,22 +568,47 @@ decodetext.place(relx=0.53, rely=0.165) # positions the text box on the screen r
 decodetext.config(highlightbackground=hdc) # makes the highlight border the same colour as the text box
 
 ########################################################################################################################
-# Conversion Function                                                                                                  #
+# Key read and write                                                                                                   #
 ########################################################################################################################
-def encodethetext( event ):
-    inpute = encodetext.get("1.0", 'end-1c') # gets the input from the encode text box
-    decodetext.delete("1.0", 'end-1c') #deletes everything in the decodetext box
-    inputec = inpute.replace("A", "f4").replace("B", "a4").replace("C", "a1").replace("D", "e3").replace("E", "b6").replace("F","d1").replace("G", "c4").replace("H", "b5").replace("I", "c2").replace("J", "d3").replace("K", "f3").replace("L","e6").replace("M", "a2").replace("N", 'd5').replace("O", "b3").replace("P", "a6").replace("Q", "d6").replace("R","b1").replace("S", "d2").replace("T", "b4").replace("U", "a5").replace("V", "b2").replace("W", "a3").replace("X","f5").replace("Y", "c6").replace("Z", "c1").replace(" ", "4!").replace("a", "F4").replace("b", "A4").replace("c","A1").replace("d", "E3").replace("e", "B6").replace("f", "D1").replace("g", "C4").replace("h", "B5").replace("i","C2").replace("j", "D3").replace("k", "F3").replace("l", "E6").replace("m", "A2").replace("n", 'D5').replace("o","B3").replace("p", "A6").replace("q", "D6").replace("r", "B1").replace("s", "D2").replace("t", "B4").replace("u","A5").replace("v", "B2").replace("w", "A3").replace("x", "F5").replace("y", "C6").replace("z", "C1")
-    decodetext.insert('end', inputec) #inserts decoded text in the encode box # replace algorithm ^
 
-def decodethetext( event ):
-    inputd = decodetext.get("1.0",'end-1c') # gets the input from the decode text box
-    encodetext.delete("1.0", 'end-1c') #deletes everything in the encodetext box
-    inputdc = inputd.replace("F4", "a").replace("A4", "b").replace("A1", "c").replace("E3", "d").replace("B6","e").replace("D1", "f").replace("C4", "g").replace("B5", "h").replace("C2", "i").replace("D3", "j").replace("F3", "k").replace("E6", "l").replace("A2", "m").replace("D5", 'n').replace("B3", "o").replace("A6", "p").replace("D6","q").replace("B1", "r").replace("D2", "s").replace("B4", "t").replace("A5", "u").replace("B2", "v").replace("A3","w").replace("F5", "x").replace("C6", "y").replace("C1", "z").replace("4!"," ").replace("f4", "A").replace("a4", "B").replace("a1", "C").replace("e3", "D").replace("b6","E").replace("d1", "F").replace("c4", "G").replace("b5", "H").replace("c2", "I").replace("d3", "J").replace("f3", "K").replace("e6", "L").replace("a2", "M").replace("d5", 'N').replace("b3", "O").replace("a6", "P").replace("d6","Q").replace("b1", "R").replace("d2", "S").replace("b4", "T").replace("a5", "U").replace("b2", "V").replace("a3","W").replace("f5", "X").replace("c6", "Y").replace("c1", "Z")
-    encodetext.insert('end', inputdc) #inserts encoded text in the decode box # replace algorithm ^
 
-decodetext.bind("<KeyRelease>", decodethetext) # binds the users key releases to the decodethetext command which performs the algorythm
-encodetext.bind("<KeyRelease>", encodethetext) # binds the users key releases to the encodethetext command. this makes the decode and encoding process realtime (converted as you type it)
+
+########################################################################################################################
+# Encryption/Decryption Function                                                                                       #
+########################################################################################################################
+
+def encrypt( event ):
+    with open('user.cfg', 'r') as f:
+        cfg = [line.strip() for line in f]
+    key = cfg[3]
+    f.close()
+    encrypted = []
+    input = encodetext.get("1.0", 'end-1c')
+    decodetext.delete("1.0", 'end-1c')
+    for i, c in enumerate(input):
+        key_c = ord(key[i % len(key)])
+        input_c = ord(c)
+        encrypted.append(chr((input_c + key_c) % 127))
+    encrypted = ''.join(encrypted)
+    decodetext.insert('end', encrypted)
+
+def decrypt( event ):
+    with open('user.cfg', 'r') as f:
+        cfg = [line.strip() for line in f]
+    key = cfg[3]
+    f.close()
+    decrypted = []
+    inputd = decodetext.get("1.0", 'end-1c')
+    encodetext.delete("1.0", 'end-1c')
+    for i, c in enumerate(inputd):
+        key_c = ord(key[i % len(key)])
+        inputd_c = ord(c)
+        decrypted.append(chr((inputd_c - key_c) % 127))
+    decrypted = ''.join(decrypted)
+    encodetext.insert('end', decrypted)
+
+decodetext.bind("<KeyRelease>", decrypt)# binds the users key releases to the decodethetext command which performs the algorythm
+encodetext.bind("<KeyRelease>", encrypt) # binds the users key releases to the encodethetext command. this makes the decode and encoding process realtime (converted as you type it)
 ########################################################################################################################
 # Copy decode function and button                                                                                        #
 ########################################################################################################################
@@ -586,6 +662,7 @@ try:
     first = colour[0]
     theme = cfg[1]
     font = cfg[2]
+    key = cfg[3]
     if colour == "Default":
         colourConfirm(Default)
     elif first == "#":
@@ -602,14 +679,19 @@ try:
             if font != "":  # if x isnt nothing and it also isnt "default"
                 fontconfirm(font)
                 tkvar3.set(font)
+                if key != "":
+                    keysaver(key)
+                else:
+                    print("Invalid Key detected in 'user.cfg', Setting to default...")
+                    default_key_set()
             else:
-                print("Invalid Font detected in 'user.cfg, Setting to default...'")
+                print("Invalid Font detected in 'user.cfg', Setting to default...")
                 default_font_set()
         else:
-            print("Invalid Theme detected in 'user.cfg, Setting to default...'")
+            print("Invalid Theme detected in 'user.cfg', Setting to default...")
             default_theme_set()
     elif colour not in Colours:
-        print("Invalid Colour detected in 'user.cfg, Setting to default...'")
+        print("Invalid Colour detected in 'user.cfg', Setting to default...")
         default_colour_set()
 except IndexError:
     print("Invalid Style detected in 'User.cfg', Setting to default...")
