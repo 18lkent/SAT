@@ -44,7 +44,7 @@ tkvar.set("Default") # setting the default colour
 
 def default_all_set():
     f = open("user.cfg", "w") # opens "user.cfg" file
-    f.write("Default\nDark\nFutura\nDefault_key") # rewrites everything in the config file to the default
+    f.write("Default\nDark\nFutura\nDefaultkey") # rewrites everything in the config file to the default
 
 def default_colour_set():
     with open('user.cfg', 'r') as f: # opens the "user.cfg" file as f
@@ -87,7 +87,7 @@ def default_key_set():
     font = cfg[2]
     f.close() # close user.cfg
     x = open("user.cfg", "w") # opens user.cfg
-    x.write(colour+"\n"+theme+"\n"+font+"Default_key") # writes default font
+    x.write(colour+"\n"+theme+"\n"+font+"Default") # writes default font
     x.close() # closes user.cfg
 
 ########################################################################################################################
@@ -133,22 +133,44 @@ def fontsaver(theme):
     x.write(colour+"\n"+theme+"\n"+font+"\n"+key)
     x.close()
 
-def keysaver():
-    key = keytext.get("1.0", 'end-1c')
-    encodetext.delete("1.0", 'end-1c')
-    decodetext.delete("1.0", 'end-1c')
-    with open('user.cfg', 'r') as f:
-        cfg = [line.strip() for line in f]
-    colour = cfg[0]
-    theme = cfg[1]
-    font = cfg[2]
-    f.close()
-    x = open("user.cfg", "w")
-    x.write(colour+"\n"+theme+"\n"+font+"\n"+key)
-    x.close()
+def keysaver(key):
+    if " " not in key:
+        if "_" not in key:
+            encodetext.delete("1.0", 'end-1c')
+            decodetext.delete("1.0", 'end-1c')
+            with open('user.cfg', 'r') as f:
+                cfg = [line.strip() for line in f]
+            colour = cfg[0]
+            theme = cfg[1]
+            font = cfg[2]
+            f.close()
+            x = open("user.cfg", "w")
+            x.write(colour+"\n"+theme+"\n"+font+"\n"+key)
+            x.close()
+
 
 ########################################################################################################################
 # Colour Picker                                                                                                        #
+########################################################################################################################
+
+def keyconfirm():
+    key = keytext.get("1.0", 'end-1c')
+    if " " not in key:
+        if "_" not in key:
+            encodetext.delete("1.0", 'end-1c')
+            decodetext.delete("1.0", 'end-1c')
+            with open('user.cfg', 'r') as f:
+                cfg = [line.strip() for line in f]
+            colour = cfg[0]
+            theme = cfg[1]
+            font = cfg[2]
+            f.close()
+            x = open("user.cfg", "w")
+            x.write(colour+"\n"+theme+"\n"+font+"\n"+key)
+            x.close()
+
+########################################################################################################################
+# Key confirm                                                                                                          #
 ########################################################################################################################
 
 def colourConfirm(new_value): # defines function "colourConfirm" with parameters "new_value"
@@ -348,9 +370,11 @@ def themeconfirm(theme_value):
         fontdropdownMenutitle.configure(bg=hdc, fg="white")
         fontdropdownMenu.configure(bg=bgc)
         fontdropdownMenuheader.configure(bg=hdc)
-        keytext.configure(bg=hdc)
-        keylabel.configure(bg=hdc)
+        keylabelheader.configure(bg=hdc)
+        keylabel.configure(bg=hdc, fg="white")
         keyconfirmbutton.configure(highlightbackground=bgc)
+        keytext.configure(bg=hdc, fg="white", highlightbackground=hdc)
+        keytextbacking.configure(bg=hdc)
         fontsaver("Dark")
 
     elif theme_value == "Light":
@@ -377,6 +401,11 @@ def themeconfirm(theme_value):
         fontdropdownMenutitle.configure(bg=lighthdc, fg="black")
         fontdropdownMenu.configure(bg=lightbgc)
         fontdropdownMenuheader.configure(bg=lighthdc)
+        keylabelheader.configure(bg=lighthdc)
+        keylabel.configure(bg=lighthdc, fg="black")
+        keyconfirmbutton.configure(highlightbackground=lightbgc)
+        keytext.configure(bg=lighthdc, fg="black", highlightbackground=lighthdc)
+        keytextbacking.configure(bg=lighthdc)
         fontsaver("Light")
 
 
@@ -530,7 +559,7 @@ keytextbackingshadow.place(relx=0.562, rely=0.11)
 keylabelheader = tk.Frame(root, bg=hdc,width=40, height=31,)
 keylabelheader.place(relx=0.50, rely=0.105)
 
-keyconfirmbutton = tk.Button(root, text="Confirm", command=keysaver)
+keyconfirmbutton = tk.Button(root, text="Confirm", command=keyconfirm)
 keyconfirmbutton.place(relx=0.79, rely=0.105)
 keyconfirmbutton.configure(highlightbackground=bgc)
 
@@ -621,6 +650,7 @@ def encrypt( event ):
     f.close()
     encrypted = []
     input = encodetext.get("1.0", 'end-1c')
+    input = input.strip("_")
     decodetext.delete("1.0", 'end-1c')
     for i, c in enumerate(input):
         key_c = ord(key[i % len(key)])
@@ -641,8 +671,9 @@ def decrypt( event ):
         key_c = ord(key[i % len(key)])
         inputd_c = ord(c)
         decrypted.append(chr((inputd_c - key_c) % 127))
-    decrypted = ''.join(decrypted)
-    encodetext.insert('end', decrypted)
+    if "_" not in decrypted:
+        decrypted = ''.join(decrypted)
+        encodetext.insert('end', decrypted)
 
 decodetext.bind("<KeyRelease>", decrypt)# binds the users key releases to the decodethetext command which performs the algorythm
 encodetext.bind("<KeyRelease>", encrypt) # binds the users key releases to the encodethetext command. this makes the decode and encoding process realtime (converted as you type it)
