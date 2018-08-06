@@ -1,3 +1,7 @@
+### Software created by Lachlan Kent ###
+   ### Begin date: fri 8/jun/2018 ###
+### Completion date:___ __/___/___ 2018 ###
+
 import tkinter as tk #imports tkinter module as tk
 
 ########################################################################################################################
@@ -91,15 +95,10 @@ def default_key_set():
     x.close() # closes user.cfg
 
 ########################################################################################################################
-# encryption key                                                                                                       #
-########################################################################################################################
-
-
-########################################################################################################################
 # Config Saver                                                                                                         #
 ########################################################################################################################
 
-def themesaver(colour):
+def theme_saver(colour):
     with open('user.cfg', 'r') as f: #opens user.cfg as "f"
         cfg = [line.strip() for line in f] # strip "" for each line in f
     theme = cfg[1] #
@@ -111,7 +110,7 @@ def themesaver(colour):
     x.close()
 
 
-def coloursaver(font):
+def colour_saver(font):
     with open('user.cfg', 'r') as f:
         cfg = [line.strip() for line in f]
     colour = cfg[0]
@@ -122,7 +121,7 @@ def coloursaver(font):
     x.write(colour+"\n"+theme+"\n"+font+"\n"+key)
     x.close()
 
-def fontsaver(theme):
+def font_saver(theme):
     with open('user.cfg', 'r') as f:
         cfg = [line.strip() for line in f]
     colour = cfg[0]
@@ -133,7 +132,7 @@ def fontsaver(theme):
     x.write(colour+"\n"+theme+"\n"+font+"\n"+key)
     x.close()
 
-def keysaver(key):
+def key_saver(key):
     if " " not in key:
         if "_" not in key:
             encodetext.delete("1.0", 'end-1c')
@@ -153,7 +152,7 @@ def keysaver(key):
 # Colour Picker                                                                                                        #
 ########################################################################################################################
 
-def keyconfirm():
+def key_confirm():
     key = keytext.get("1.0", 'end-1c')
     if " " not in key:
         if "_" not in key:
@@ -173,70 +172,70 @@ def keyconfirm():
 # Key confirm                                                                                                          #
 ########################################################################################################################
 
-def colourConfirm(new_value): # defines function "colourConfirm" with parameters "new_value"
+def colour_confirm(new_value): # defines function "colourConfirm" with parameters "new_value"
     if new_value == "Default": # if the value included equals default,
         trim.configure(bg=trimc) # change the trim colour
         selectedWindow.configure(bg=trimc) # and the current window indicator colour to the default,
-        themesaver("Default")
+        theme_saver("Default")
         customcolourtext.lower()
     elif new_value == "Red": # if the value included equals red,
         trim.configure(bg=Red) # change the trim colour
         selectedWindow.configure(bg=Red) # and the current window indicator colour to red,
-        themesaver("Red") # write the selected value to the user.cfg file
+        theme_saver("Red") # write the selected value to the user.cfg file
         customcolourtext.lower()
     elif new_value == "Orange":
         trim.configure(bg=Orange)
         selectedWindow.configure(bg=Orange)
-        themesaver("Orange")
+        theme_saver("Orange")
         customcolourtext.lower()
     elif new_value == "Yellow":
         trim.configure(bg=Yellow)
         selectedWindow.configure(bg=Yellow)
-        themesaver("Yellow")
+        theme_saver("Yellow")
         customcolourtext.lower()
     elif new_value == "Green":
         trim.configure(bg=Green)
         selectedWindow.configure(bg=Green)
-        themesaver("Green")
+        theme_saver("Green")
         customcolourtext.lower()
     elif new_value == "Blue":
         trim.configure(bg=Blue)
         selectedWindow.configure(bg=Blue)
-        themesaver("Blue")
+        theme_saver("Blue")
         customcolourtext.lower()
     elif new_value == "Indigo":
         trim.configure(bg=Indigo)
         selectedWindow.configure(bg=Indigo)
-        themesaver("Indigo")
+        theme_saver("Indigo")
         customcolourtext.lower()
     elif new_value == "Violet":
         trim.configure(bg=Violet)
         selectedWindow.configure(bg=Violet)
-        themesaver("Violet")
+        theme_saver("Violet")
         customcolourtext.lower()
     elif new_value == "Custom":
-        customcolour()
+        custom_colour()
 
 ########################################################################################################################
 # Custom Hex Colour Selector                                                                                           #
 ########################################################################################################################
 
-def customcolour():
+def custom_colour():
     customcolourtext.tkraise()
 
-def getcustom( event ):
+def get_custom( event ):
     customcolour = customcolourtext.get("1.0", 'end-1c')
     customcolour = str(customcolour)
     if len(customcolour) < 5 and len(customcolour) > 3 or len(customcolour) < 8 and len(customcolour) > 6:
         trim.configure(bg=customcolour)
         selectedWindow.configure(bg=customcolour)
-        themesaver(customcolour)
+        theme_saver(customcolour)
 
 ########################################################################################################################
 # Font Picker                                                                                                         #
 ########################################################################################################################
 
-def fontconfirm(font_value):
+def font_confirm(font_value):
     if font_value == "Default":
         colourdropdownMenutitle.configure(font=("Futura", 15, "italic"))
         fontdropdownMenutitle.configure(font=("Futura", 15, "italic"))
@@ -249,7 +248,7 @@ def fontconfirm(font_value):
         encodetextheaderlabel.configure(font=("Futura", 15, "italic"))
         decodetextheaderlabel.configure(font=("Futura", 15, "italic"))
         keylabel.configure(font=("Futura", 15, "italic"))
-        coloursaver("Defaultf")
+        colour_saver("Defaultf")
     elif font_value == "Futura":
         colourdropdownMenutitle.configure(font=("Futura", 15, "italic"))
         fontdropdownMenutitle.configure(font=("Futura", 15, "italic"))
@@ -262,7 +261,7 @@ def fontconfirm(font_value):
         encodetextheaderlabel.configure(font=("Futura", 15, "italic"))
         decodetextheaderlabel.configure(font=("Futura", 15, "italic"))
         keylabel.configure(font=("Futura", 15, "italic"))
-        coloursaver("Futura")
+        colour_saver("Futura")
     elif font_value == "Helvetica":
         colourdropdownMenutitle.configure(font=("Helvetica", 15, "italic"))
         fontdropdownMenutitle.configure(font=("Helvetica", 15, "italic"))
@@ -275,7 +274,7 @@ def fontconfirm(font_value):
         encodetextheaderlabel.configure(font=("Helvetica", 15, "italic"))
         decodetextheaderlabel.configure(font=("Helvetica", 15, "italic"))
         keylabel.configure(font=("Helvetica", 15, "italic"))
-        coloursaver("Helvetica")
+        colour_saver("Helvetica")
     elif font_value == "Trajan":
         colourdropdownMenutitle.configure(font=("Trajan", 15, "italic"))
         fontdropdownMenutitle.configure(font=("Trajan", 15, "italic"))
@@ -288,7 +287,7 @@ def fontconfirm(font_value):
         encodetextheaderlabel.configure(font=("Trajan", 15, "italic"))
         decodetextheaderlabel.configure(font=("Trajan", 15, "italic"))
         keylabel.configure(font=("Trajan", 15, "italic"))
-        coloursaver("Trajan")
+        colour_saver("Trajan")
     elif font_value == "Garamond":
         colourdropdownMenutitle.configure(font=("Garamond", 16, "italic"))
         fontdropdownMenutitle.configure(font=("Garamond", 16, "italic"))
@@ -301,7 +300,7 @@ def fontconfirm(font_value):
         encodetextheaderlabel.configure(font=("Garamond", 15, "italic"))
         decodetextheaderlabel.configure(font=("Garamond", 15, "italic"))
         keylabel.configure(font=("Garamond", 15, "italic"))
-        coloursaver("Garamond")
+        colour_saver("Garamond")
     elif font_value == "Bodoni":
         colourdropdownMenutitle.configure(font=("Bodoni", 15, "italic"))
         fontdropdownMenutitle.configure(font=("Bodoni", 15, "italic"))
@@ -314,7 +313,7 @@ def fontconfirm(font_value):
         encodetextheaderlabel.configure(font=("Bodoni", 15, "italic"))
         decodetextheaderlabel.configure(font=("Bodoni", 15, "italic"))
         keylabel.configure(font=("Bodoni", 15, "italic"))
-        coloursaver("Bodoni")
+        colour_saver("Bodoni")
     elif font_value == "Comic Sans":
         colourdropdownMenutitle.configure(font=("Comic Sans MS", 15, "italic"))
         fontdropdownMenutitle.configure(font=("Comic Sans MS", 15, "italic"))
@@ -327,7 +326,7 @@ def fontconfirm(font_value):
         encodetextheaderlabel.configure(font=("Comic Sans MS", 15, "italic"))
         decodetextheaderlabel.configure(font=("Comic Sans MS", 15, "italic"))
         keylabel.configure(font=("Comic Sans MS", 15, "italic"))
-        coloursaver("Comic Sans")
+        colour_saver("Comic Sans")
     elif font_value == "Verdana":
         colourdropdownMenutitle.configure(font=("Verdana", 15, "italic"))
         fontdropdownMenutitle.configure(font=("Verdana", 15, "italic"))
@@ -340,12 +339,12 @@ def fontconfirm(font_value):
         encodetextheaderlabel.configure(font=("Verdana", 15, "italic"))
         decodetextheaderlabel.configure(font=("Verdana", 15, "italic"))
         keylabel.configure(font=("Verdana", 15, "italic"))
-        coloursaver("Verdana")
+        colour_saver("Verdana")
 ########################################################################################################################
 # Theme Picker                                                                                                         #
 ########################################################################################################################
 
-def themeconfirm(theme_value):
+def theme_confirm(theme_value):
     if theme_value == "Dark":
         header.configure(bg=hdc)
         generalb.configure(highlightbackground=hdc)
@@ -375,7 +374,7 @@ def themeconfirm(theme_value):
         keyconfirmbutton.configure(highlightbackground=bgc)
         keytext.configure(bg=hdc, fg="white", highlightbackground=hdc)
         keytextbacking.configure(bg=hdc)
-        fontsaver("Dark")
+        font_saver("Dark")
 
     elif theme_value == "Light":
         header.configure(bg=lighthdc)
@@ -406,14 +405,14 @@ def themeconfirm(theme_value):
         keyconfirmbutton.configure(highlightbackground=lightbgc)
         keytext.configure(bg=lighthdc, fg="black", highlightbackground=lighthdc)
         keytextbacking.configure(bg=lighthdc)
-        fontsaver("Light")
+        font_saver("Light")
 
 
 ########################################################################################################################
 # Settings button commands                                                                                             #
 ########################################################################################################################
 
-def settingsb(): # this is the command that is triggered when the setting tab button is pressed
+def settings_button(): # this is the command that is triggered when the setting tab button is pressed
     encodetextheadershadow.lower() # Lowers the header above the encode text box's shadow
     encodetextheader.lower() # Lowers the hedaer above the encode text box
     encodetext.lower() # Lowers the encoding text box
@@ -451,7 +450,7 @@ def settingsb(): # this is the command that is triggered when the setting tab bu
 # General button commands                                                                                              #
 ########################################################################################################################
 
-def generalb(): # this is the command that is triggered when the general button is triggered
+def general_button(): # this is the command that is triggered when the general button is triggered
     encodetextshadow.tkraise() # Raises the encode text box shadow
     decodetextshadow.tkraise() # Raises the decode text box shadow
     encodetextheadershadow.tkraise() # Raises the encode text box header shadow
@@ -489,7 +488,7 @@ def generalb(): # this is the command that is triggered when the general button 
 # Settings Page                                                                                                        #
 ########################################################################################################################
 
-colourdropdownMenu = tk.OptionMenu(root, tkvar, *Colours, command=colourConfirm) # makes the dropdown menu
+colourdropdownMenu = tk.OptionMenu(root, tkvar, *Colours, command=colour_confirm) # makes the dropdown menu
 colourdropdownMenu.place(relx=0.202, rely=0.105) # places the dropdown menu relative to the window
 colourdropdownMenu.configure(bg=bgc) # makes the background colour of the dropdown menu the same as the pages background
 
@@ -503,7 +502,7 @@ colourdropdownMenutitle = tk.Label(root, text="Choose a colour") # creates the l
 colourdropdownMenutitle.place(relx=0.04, rely=0.105) # places the label for the colour picker on the header
 colourdropdownMenutitle.configure(font=("Futura",15, "italic"),fg="white", bg=hdc) # changes the font, font colour and background colour of the label
 
-themedropdownMenu = tk.OptionMenu(root, tkvar2, *Themes, command=themeconfirm) # makes the dropdown menu
+themedropdownMenu = tk.OptionMenu(root, tkvar2, *Themes, command=theme_confirm) # makes the dropdown menu
 themedropdownMenu.place(relx=0.202, rely=0.205) # places the dropdown menu relative to the window
 themedropdownMenu.configure(bg=bgc) # makes the background colour of the dropdown menu the same as the pages background
 
@@ -521,7 +520,7 @@ fontdropdownMenutitle = tk.Label(root, text="Choose a font") # creates the label
 fontdropdownMenutitle.place(relx=0.04, rely=0.305) # places the label for the colour picker on the header
 fontdropdownMenutitle.configure(font=("Futura",15, "italic"),fg="white", bg=hdc) # changes the font, font colour and background colour of the label
 
-fontdropdownMenu = tk.OptionMenu(root, tkvar3, *Fonts, command=fontconfirm) # makes the dropdown menu
+fontdropdownMenu = tk.OptionMenu(root, tkvar3, *Fonts, command=font_confirm) # makes the dropdown menu
 fontdropdownMenu.place(relx=0.202, rely=0.305) # places the dropdown menu relative to the window
 fontdropdownMenu.configure(bg=bgc) # makes the background colour of the dropdown menu the same as the pages background
 
@@ -534,7 +533,7 @@ fontdropdownMenuheadershadow.place(relx=0.042, rely=0.305) # places the shadow r
 customcolourtext = tk.Text(root,height=1, width=7,bg="white", fg="black", borderwidth=2) # creates the label for the colour picker
 customcolourtext.place(relx=0.34, rely=0.105) # places the label for the colour picker on the header
 
-customcolourtext.bind("<KeyRelease>", getcustom)
+customcolourtext.bind("<KeyRelease>", get_custom)
 
 keylabelheadershadow = tk.Frame(root, bg="black",width=40, height=31,)
 keylabelheadershadow.place(relx=0.502, rely=0.11)
@@ -559,7 +558,7 @@ keytextbackingshadow.place(relx=0.562, rely=0.11)
 keylabelheader = tk.Frame(root, bg=hdc,width=40, height=31,)
 keylabelheader.place(relx=0.50, rely=0.105)
 
-keyconfirmbutton = tk.Button(root, text="Confirm", command=keyconfirm)
+keyconfirmbutton = tk.Button(root, text="Confirm", command=key_confirm)
 keyconfirmbutton.place(relx=0.79, rely=0.105)
 keyconfirmbutton.configure(highlightbackground=bgc)
 
@@ -583,11 +582,11 @@ selectedWindow.place(relx=0.004, rely=0.04) # places the selected window indicat
 # Header Buttons                                                                                                       #
 ########################################################################################################################
 
-generalb = tk.Button(root, text="General",highlightbackground=hdc, command=generalb) # creates general button
+generalb = tk.Button(root, text="General",highlightbackground=hdc, command=general_button) # creates general button
 generalb.place(relx=0.0, rely=0.0, height=24, width=75) # positions the button on the toolbar relative to the window
 generalb.config(font=("Futura",15, "italic")) # sets font and text size for general button
 
-settingsb = tk.Button(root, text="Settings",highlightbackground=hdc, command=settingsb) # creates settings button
+settingsb = tk.Button(root, text="Settings",highlightbackground=hdc, command=settings_button) # creates settings button
 settingsb.place(relx=0.09, rely=0.0, height=24, width=75) # positions the button on the toolbar relative to the window
 settingsb.config(font=("Futura",15, "italic")) # sets font and text size for general button
 
@@ -632,12 +631,6 @@ decodetextshadow.place(relx=0.532, rely=0.170) # places the text box on the scre
 decodetext = tk.Text(root, height=25, width=47,bg = hdc, fg="white", borderwidth=2) # creates the text box
 decodetext.place(relx=0.53, rely=0.165) # positions the text box on the screen relative to the window
 decodetext.config(highlightbackground=hdc) # makes the highlight border the same colour as the text box
-
-########################################################################################################################
-# Key read and write                                                                                                   #
-########################################################################################################################
-
-
 
 ########################################################################################################################
 # Encryption/Decryption Function                                                                                       #
@@ -732,7 +725,7 @@ try:
     font = cfg[2]
     key = cfg[3]
     if colour == "Default":
-        colourConfirm(Default)
+        colour_confirm(Default)
     elif first == "#":
         trim.configure(bg=colour)
         selectedWindow.configure(bg=colour)
@@ -742,13 +735,13 @@ try:
         selectedWindow.configure(bg=colour)
         tkvar.set(colour)
         if theme != "":  # if x isnt nothing and it also isnt "default"
-            themeconfirm(theme)
+            theme_confirm(theme)
             tkvar2.set(theme)
             if font != "":  # if x isnt nothing and it also isnt "default"
-                fontconfirm(font)
+                font_confirm(font)
                 tkvar3.set(font)
                 if key != "":
-                    keysaver(key)
+                    key_saver(key)
                 else:
                     print("Invalid Key detected in 'user.cfg', Setting to default...")
                     default_key_set()
@@ -769,6 +762,5 @@ except IndexError:
 ########################################################################################################################
 # Main loop                                                                                                            #
 ########################################################################################################################
-
 
 root.mainloop() # starts mainloop
