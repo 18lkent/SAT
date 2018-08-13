@@ -101,12 +101,12 @@ def default_key_set():
 def theme_saver(colour):
     with open('user.cfg', 'r') as f: #opens user.cfg as "f"
         cfg = [line.strip() for line in f] # strip "" for each line in f
-    theme = cfg[1] #
-    font = cfg[2]
-    key = cfg[3]
+    theme = cfg[1] # designates the second line of the file as 'theme'
+    font = cfg[2] # designates the third line of the file as 'font'
+    key = cfg[3] # designates the forth line of the file as 'key'
     f.close()
     x = open("user.cfg", "w")
-    x.write(colour+"\n"+theme+"\n"+font+"\n"+key)
+    x.write(colour+"\n"+theme+"\n"+font+"\n"+key) # writes the strings into the file
     x.close()
 
 
@@ -133,10 +133,10 @@ def font_saver(theme):
     x.close()
 
 def key_saver(key):
-    if " " not in key:
-        if "_" not in key:
-            encodetext.delete("1.0", 'end-1c')
-            decodetext.delete("1.0", 'end-1c')
+    if " " not in key: # checks if there are spaces in the key
+        if "_" not in key: # checks if there are underscores in the key
+            encodetext.delete("1.0", 'end-1c') # deletes what is in the encode text box
+            decodetext.delete("1.0", 'end-1c') # deletes what is in the encode text box
             with open('user.cfg', 'r') as f:
                 cfg = [line.strip() for line in f]
             colour = cfg[0]
@@ -153,10 +153,10 @@ def key_saver(key):
 ########################################################################################################################
 
 def key_confirm():
-    key = keytext.get("1.0", 'end-1c')
-    if " " not in key:
-        if "_" not in key:
-            encodetext.delete("1.0", 'end-1c')
+    key = keytext.get("1.0", 'end-1c') # gets key from key text box
+    if " " not in key: # if space isnt in the key
+        if "_" not in key: # if underscore isnt in key (Both for crash fix)
+            encodetext.delete("1.0", 'end-1c') # delete everything in the text boxes
             decodetext.delete("1.0", 'end-1c')
             with open('user.cfg', 'r') as f:
                 cfg = [line.strip() for line in f]
@@ -165,7 +165,7 @@ def key_confirm():
             font = cfg[2]
             f.close()
             x = open("user.cfg", "w")
-            x.write(colour+"\n"+theme+"\n"+font+"\n"+key)
+            x.write(colour+"\n"+theme+"\n"+font+"\n"+key) # writes new key in cfg file
             x.close()
 
 ########################################################################################################################
@@ -221,23 +221,28 @@ def colour_confirm(new_value): # defines function "colourConfirm" with parameter
 ########################################################################################################################
 
 def custom_colour():
-    customcolourtext.tkraise()
+    customcolourtext.tkraise() # raises the custom colour text box
 
 def get_custom( event ):
-    customcolour = customcolourtext.get("1.0", 'end-1c')
-    customcolour = str(customcolour)
-    if len(customcolour) < 5 and len(customcolour) > 3 or len(customcolour) < 8 and len(customcolour) > 6:
-        trim.configure(bg=customcolour)
-        selectedWindow.configure(bg=customcolour)
-        theme_saver(customcolour)
+    try:
+        customcolourerror.lower()
+        customcolour = customcolourtext.get("1.0", 'end-1c') # gets custom colour from text box
+        customcolour = str(customcolour) # converts to a string
+        if len(customcolour) < 5 and len(customcolour) > 3 or len(customcolour) < 8 and len(customcolour) > 6: #makes sure the colour does update when the input isnt hexidecimal
+            trim.configure(bg=customcolour) # sets colour of trim
+            selectedWindow.configure(bg=customcolour) # sets window indicator colour
+            theme_saver(customcolour) # writes to the cfg file
+    except tk.TclError:
+        customcolourerror.tkraise()
+
 
 ########################################################################################################################
 # Font Picker                                                                                                         #
 ########################################################################################################################
 
 def font_confirm(font_value):
-    if font_value == "Default":
-        colourdropdownMenutitle.configure(font=("Futura", 15, "italic"))
+    if font_value == "Default": # if font is "Default"
+        colourdropdownMenutitle.configure(font=("Futura", 15, "italic")) # set all text in the gui as italic Futura, size 15
         fontdropdownMenutitle.configure(font=("Futura", 15, "italic"))
         themedropdownMenutitle.configure(font=("Futura", 15, "italic"))
         generalb.configure(font=("Futura", 15, "italic"))
@@ -248,9 +253,9 @@ def font_confirm(font_value):
         encodetextheaderlabel.configure(font=("Futura", 15, "italic"))
         decodetextheaderlabel.configure(font=("Futura", 15, "italic"))
         keylabel.configure(font=("Futura", 15, "italic"))
-        colour_saver("Defaultf")
-    elif font_value == "Futura":
-        colourdropdownMenutitle.configure(font=("Futura", 15, "italic"))
+        colour_saver("Defaultf") # write to the file
+    elif font_value == "Futura": # if font_value is anything else,
+        colourdropdownMenutitle.configure(font=("Futura", 15, "italic")) # set all text that font
         fontdropdownMenutitle.configure(font=("Futura", 15, "italic"))
         themedropdownMenutitle.configure(font=("Futura", 15, "italic"))
         generalb.configure(font=("Futura", 15, "italic"))
@@ -345,11 +350,11 @@ def font_confirm(font_value):
 ########################################################################################################################
 
 def theme_confirm(theme_value):
-    if theme_value == "Dark":
-        header.configure(bg=hdc)
-        generalb.configure(highlightbackground=hdc)
-        settingsb.configure(highlightbackground=hdc)
-        copydb.configure(highlightbackground=bgc)
+    if theme_value == "Dark": # if theme_value is dark
+        header.configure(bg=hdc) # set everything to the default colours
+        generalb.configure(highlightbackground=hdc) # sets general button background colour
+        settingsb.configure(highlightbackground=hdc) # sets settings button background colour
+        copydb.configure(highlightbackground=bgc) # sets copy button background colour
         copyeb.configure(highlightbackground=bgc)
         root.configure(bg=bgc)
         hider.configure(bg=bgc)
@@ -374,10 +379,12 @@ def theme_confirm(theme_value):
         keyconfirmbutton.configure(highlightbackground=bgc)
         keytext.configure(bg=hdc, fg="white", highlightbackground=hdc)
         keytextbacking.configure(bg=hdc)
+        encodetext.configure(fg="white")
+        decodetext.configure(fg="white")
         font_saver("Dark")
 
-    elif theme_value == "Light":
-        header.configure(bg=lighthdc)
+    elif theme_value == "Light": # if theme_value is light
+        header.configure(bg=lighthdc) # set all colours to the lighter setting
         generalb.configure(highlightbackground=lighthdc)
         settingsb.configure(highlightbackground=lighthdc)
         copydb.configure(highlightbackground=lightbgc)
@@ -405,6 +412,8 @@ def theme_confirm(theme_value):
         keyconfirmbutton.configure(highlightbackground=lightbgc)
         keytext.configure(bg=lighthdc, fg="black", highlightbackground=lighthdc)
         keytextbacking.configure(bg=lighthdc)
+        encodetext.configure(fg="black")
+        decodetext.configure(fg="black")
         font_saver("Light")
 
 
@@ -533,10 +542,13 @@ fontdropdownMenuheadershadow.place(relx=0.042, rely=0.305) # places the shadow r
 customcolourtext = tk.Text(root,height=1, width=7,bg="white", fg="black", borderwidth=2) # creates the label for the colour picker
 customcolourtext.place(relx=0.34, rely=0.105) # places the label for the colour picker on the header
 
-customcolourtext.bind("<KeyRelease>", get_custom)
+customcolourerror = tk.Label(root, text="error, colour does not exist", bg=bgc, fg="red")
+customcolourerror.place(relx=0.21, rely=0.155)
 
-keylabelheadershadow = tk.Frame(root, bg="black",width=40, height=31,)
-keylabelheadershadow.place(relx=0.502, rely=0.11)
+customcolourtext.bind("<KeyRelease>", get_custom) # binds the get_custom command to a key
+
+keylabelheadershadow = tk.Frame(root, bg="black",width=40, height=31,) # shadow for the key label header
+keylabelheadershadow.place(relx=0.502, rely=0.11) # places shadow
 
 keylabelheader = tk.Frame(root, bg=hdc,width=40, height=31,)
 keylabelheader.place(relx=0.50, rely=0.105)
@@ -639,13 +651,13 @@ decodetext.config(highlightbackground=hdc) # makes the highlight border the same
 def encrypt( event ):
     with open('user.cfg', 'r') as f:
         cfg = [line.strip() for line in f]
-    key = cfg[3]
+    key = cfg[3] # key is the 4th line in the cfg file
     f.close()
-    encrypted = []
-    input = encodetext.get("1.0", 'end-1c')
-    input = input.strip("_")
-    decodetext.delete("1.0", 'end-1c')
-    for i, c in enumerate(input):
+    encrypted = [] # creates list called "encrypted"
+    input = encodetext.get("1.0", 'end-1c') # gets input from input box
+    input = input.strip("_") # strips underscores (prevents gui from freezing)
+    decodetext.delete("1.0", 'end-1c') # deletes what is in the decode box
+    for i, c in enumerate(input): # loops over input
         key_c = ord(key[i % len(key)])
         input_c = ord(c)
         encrypted.append(chr((input_c + key_c) % 127))
