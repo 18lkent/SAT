@@ -3,6 +3,7 @@
 ### Completion date:___ __/___/___ 2018 ###
 
 import tkinter as tk #imports tkinter module as tk
+from tkinter import filedialog
 
 ########################################################################################################################
 # Base Settings and Universal Assets                                                                                   #
@@ -375,6 +376,7 @@ def theme_confirm(theme_value):
         fontdropdownMenu.configure(bg=bgc)
         fontdropdownMenuheader.configure(bg=hdc)
         keylabelheader.configure(bg=hdc)
+        customcolourerror.configure(bg=bgc)
         keylabel.configure(bg=hdc, fg="white")
         keyconfirmbutton.configure(highlightbackground=bgc)
         keytext.configure(bg=hdc, fg="white", highlightbackground=hdc)
@@ -395,6 +397,7 @@ def theme_confirm(theme_value):
         encodetext.configure(bg=lighthdc, highlightbackground=lighthdc)
         decodetext.configure(bg=lighthdc, highlightbackground=lighthdc)
         encodetextheader.configure(bg=lighthdc)
+        customcolourerror.configure(bg=lightbgc)
         encodetextheaderlabel.configure(bg=lighthdc, fg="black")
         decodetextheader.configure(bg=lighthdc)
         decodetextheaderlabel.configure(bg=lighthdc, fg="black")
@@ -492,6 +495,7 @@ def general_button(): # this is the command that is triggered when the general b
     keytextbacking.lower()
     keytextbackingshadow.lower()
     selectedWindow.place(relx=0.004, rely=0.04) # positions the current window indicator below the general window
+
 
 ########################################################################################################################
 # Settings Page                                                                                                        #
@@ -643,6 +647,61 @@ decodetextshadow.place(relx=0.532, rely=0.170) # places the text box on the scre
 decodetext = tk.Text(root, height=25, width=47,bg = hdc, fg="white", borderwidth=2) # creates the text box
 decodetext.place(relx=0.53, rely=0.165) # positions the text box on the screen relative to the window
 decodetext.config(highlightbackground=hdc) # makes the highlight border the same colour as the text box
+
+########################################################################################################################
+# file dialog                                                                                                          #
+########################################################################################################################
+
+def encodefromfile():
+    root.filename = tk.filedialog.askopenfilename(filetypes = (("text files", "*.txt"),("all files", "*.*")))
+    with open('user.cfg', 'r') as f:
+        cfg = [line.strip() for line in f]
+    key = cfg[3] # key is the 4th line in the cfg file
+    f.close()
+    f = open(root.filename, "r")
+    input = f.read()
+    encrypted = [] # creates list called "encrypted"
+    for i, c in enumerate(input): # loops over input
+        key_c = ord(key[i % len(key)])
+        input_c = ord(c)
+        encrypted.append(chr((input_c + key_c) % 127))
+    encrypted = ''.join(encrypted)
+    f.close()
+    f = tk.filedialog.asksaveasfile(mode='w', defaultextension=".txt")
+    if f is None:  # asksaveasfile return `None` if dialog closed with "cancel".
+        return
+    text2save = str(encrypted)  # starts from `1.0`, not `0.0`
+    f.write(text2save)
+    f.close()
+
+def decodefromfile():
+    root.filename = tk.filedialog.askopenfilename(filetypes = (("text files", "*.txt"),("all files", "*.*")))
+    with open('user.cfg', 'r') as f:
+        cfg = [line.strip() for line in f]
+    key = cfg[3] # key is the 4th line in the cfg file
+    f.close()
+    f = open(root.filename, "r")
+    input = f.read()
+    encrypted = [] # creates list called "encrypted"
+    for i, c in enumerate(input): # loops over input
+        key_c = ord(key[i % len(key)])
+        input_c = ord(c)
+        encrypted.append(chr((input_c - key_c) % 127))
+    encrypted = ''.join(encrypted)
+    f.close()
+    f = tk.filedialog.asksaveasfile(mode='w', defaultextension=".txt")
+    if f is None:  # asksaveasfile return `None` if dialog closed with "cancel".
+        return
+    text2save = str(encrypted)  # starts from `1.0`, not `0.0`
+    f.write(text2save)
+    f.close()
+
+encodebrowse = tk.Button(root, text="Browse", highlightbackground=hdc, command=encodefromfile)
+encodebrowse.place(relx=0.05,rely=0.1)
+
+decodebrowse = tk.Button(root, text="Browse", highlightbackground=hdc, command=decodefromfile)
+decodebrowse.place(relx=0.865,rely=0.1)
+
 
 ########################################################################################################################
 # Encryption/Decryption Function                                                                                       #
