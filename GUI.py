@@ -253,6 +253,8 @@ def font_confirm(font_value):
         closeb.configure(font=("Futura", 15, "italic"))
         encodetextheaderlabel.configure(font=("Futura", 15, "italic"))
         decodetextheaderlabel.configure(font=("Futura", 15, "italic"))
+        encodebrowse.configure(font=("Futura", 15, "italic"))
+        decodebrowse.configure(font=("Futura", 15, "italic"))
         keylabel.configure(font=("Futura", 15, "italic"))
         colour_saver("Defaultf") # write to the file
     elif font_value == "Futura": # if font_value is anything else,
@@ -264,6 +266,8 @@ def font_confirm(font_value):
         copyeb.configure(font=("Futura", 15, "italic"))
         copydb.configure(font=("Futura", 15, "italic"))
         closeb.configure(font=("Futura", 15, "italic"))
+        encodebrowse.configure(font=("Futura", 15, "italic"))
+        decodebrowse.configure(font=("Futura", 15, "italic"))
         encodetextheaderlabel.configure(font=("Futura", 15, "italic"))
         decodetextheaderlabel.configure(font=("Futura", 15, "italic"))
         keylabel.configure(font=("Futura", 15, "italic"))
@@ -277,6 +281,8 @@ def font_confirm(font_value):
         copyeb.configure(font=("Helvetica", 15, "italic"))
         copydb.configure(font=("Helvetica", 15, "italic"))
         closeb.configure(font=("Helvetica", 15, "italic"))
+        encodebrowse.configure(font=("Helvetica", 15, "italic"))
+        decodebrowse.configure(font=("Helvetica", 15, "italic"))
         encodetextheaderlabel.configure(font=("Helvetica", 15, "italic"))
         decodetextheaderlabel.configure(font=("Helvetica", 15, "italic"))
         keylabel.configure(font=("Helvetica", 15, "italic"))
@@ -290,6 +296,8 @@ def font_confirm(font_value):
         copyeb.configure(font=("Trajan", 15, "italic"))
         copydb.configure(font=("Trajan", 15, "italic"))
         closeb.configure(font=("Trajan", 15, "italic"))
+        encodebrowse.configure(font=("Trajan", 15, "italic"))
+        decodebrowse.configure(font=("Trajan", 15, "italic"))
         encodetextheaderlabel.configure(font=("Trajan", 15, "italic"))
         decodetextheaderlabel.configure(font=("Trajan", 15, "italic"))
         keylabel.configure(font=("Trajan", 15, "italic"))
@@ -303,6 +311,8 @@ def font_confirm(font_value):
         copyeb.configure(font=("Garamond", 16, "italic"))
         copydb.configure(font=("Garamond", 16, "italic"))
         closeb.configure(font=("Garamond", 16, "italic"))
+        encodebrowse.configure(font=("Garamond", 15, "italic"))
+        decodebrowse.configure(font=("Garamond", 15, "italic"))
         encodetextheaderlabel.configure(font=("Garamond", 15, "italic"))
         decodetextheaderlabel.configure(font=("Garamond", 15, "italic"))
         keylabel.configure(font=("Garamond", 15, "italic"))
@@ -316,6 +326,8 @@ def font_confirm(font_value):
         copyeb.configure(font=("Bodoni", 15, "italic"))
         copydb.configure(font=("Bodoni", 15, "italic"))
         closeb.configure(font=("Bodoni", 15, "italic"))
+        encodebrowse.configure(font=("Bodoni", 15, "italic"))
+        decodebrowse.configure(font=("Bodoni", 15, "italic"))
         encodetextheaderlabel.configure(font=("Bodoni", 15, "italic"))
         decodetextheaderlabel.configure(font=("Bodoni", 15, "italic"))
         keylabel.configure(font=("Bodoni", 15, "italic"))
@@ -329,6 +341,8 @@ def font_confirm(font_value):
         copyeb.configure(font=("Comic Sans MS", 15, "italic"))
         copydb.configure(font=("Comic Sans MS", 15, "italic"))
         closeb.configure(font=("Comic Sans MS", 15, "italic"))
+        encodebrowse.configure(font=("Comic Sans MS", 15, "italic"))
+        decodebrowse.configure(font=("Comic Sans MS", 15, "italic"))
         encodetextheaderlabel.configure(font=("Comic Sans MS", 15, "italic"))
         decodetextheaderlabel.configure(font=("Comic Sans MS", 15, "italic"))
         keylabel.configure(font=("Comic Sans MS", 15, "italic"))
@@ -342,6 +356,8 @@ def font_confirm(font_value):
         copyeb.configure(font=("Verdana", 15, "italic"))
         copydb.configure(font=("Verdana", 15, "italic"))
         closeb.configure(font=("Verdana", 15, "italic"))
+        encodebrowse.configure(font=("Verdana", 15, "italic"))
+        decodebrowse.configure(font=("Verdana", 15, "italic"))
         encodetextheaderlabel.configure(font=("Verdana", 15, "italic"))
         decodetextheaderlabel.configure(font=("Verdana", 15, "italic"))
         keylabel.configure(font=("Verdana", 15, "italic"))
@@ -355,6 +371,8 @@ def theme_confirm(theme_value):
         header.configure(bg=hdc) # set everything to the default colours
         generalb.configure(highlightbackground=hdc) # sets general button background colour
         settingsb.configure(highlightbackground=hdc) # sets settings button background colour
+        decodebrowse.configure(highlightbackground=hdc)  # sets settings button background colour
+        encodebrowse.configure(highlightbackground=hdc)  # sets settings button background colour
         copydb.configure(highlightbackground=bgc) # sets copy button background colour
         copyeb.configure(highlightbackground=bgc)
         root.configure(bg=bgc)
@@ -389,6 +407,8 @@ def theme_confirm(theme_value):
         header.configure(bg=lighthdc) # set all colours to the lighter setting
         generalb.configure(highlightbackground=lighthdc)
         settingsb.configure(highlightbackground=lighthdc)
+        decodebrowse.configure(highlightbackground=lighthdc)  # sets settings button background colour
+        encodebrowse.configure(highlightbackground=lighthdc)  # sets settings button background colour
         copydb.configure(highlightbackground=lightbgc)
         copyeb.configure(highlightbackground=lightbgc)
         root.configure(bg=lightbgc)
@@ -437,6 +457,8 @@ def settings_button(): # this is the command that is triggered when the setting 
     decodetextshadow.lower() # Lowers the shadow behind the decoder text box
     copydb.lower() # Lowers the copy button next to the decode text box
     copyeb.lower() # Lowers the copy button next to the encode text box
+    encodebrowse.lower()
+    decodebrowse.lower()
     colourdropdownMenu.tkraise() # Raises the dropdown menu
     colourdropdownMenuheadershadow.tkraise() # Raises the dropdown menu header shadow
     colourdropdownMenuheader.tkraise() # Raises the dropdown menu header
@@ -475,6 +497,8 @@ def general_button(): # this is the command that is triggered when the general b
     decodetextheaderlabel.tkraise() # Raises the decode text box label
     copydb.tkraise() # Raises the decode text box copy button
     copyeb.tkraise() # Raises the encode text box copy button
+    encodebrowse.tkraise()
+    decodebrowse.tkraise()
     colourdropdownMenu.lower() #  lowers the dropdown menu
     colourdropdownMenuheader.lower() # lowers the dropdown menu header
     colourdropdownMenutitle.lower() # lowers the dropdown menu title
@@ -661,7 +685,7 @@ def encodefromfile():
     f = open(root.filename, "r")
     input = f.read()
     encrypted = [] # creates list called "encrypted"
-    for i, c in enumerate(input): # loops over input
+    for i, c in enumerate(input): # *
         key_c = ord(key[i % len(key)])
         input_c = ord(c)
         encrypted.append(chr((input_c + key_c) % 127))
@@ -670,8 +694,8 @@ def encodefromfile():
     f = tk.filedialog.asksaveasfile(mode='w', defaultextension=".txt")
     if f is None:  # asksaveasfile return `None` if dialog closed with "cancel".
         return
-    text2save = str(encrypted)  # starts from `1.0`, not `0.0`
-    f.write(text2save)
+    encoded_string = str(encrypted)
+    f.write(encoded_string)
     f.close()
 
 def decodefromfile():
