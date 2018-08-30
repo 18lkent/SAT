@@ -1,13 +1,16 @@
 ### Software created by Lachlan Kent ###
    ### Begin date: fri 8/jun/2018 ###
-### Completion date:___ __/___/___ 2018 ###
+### Completion date: tue 21/aug/2018 ###
 
 """ *
-the encryption and decryption algorythm works by
+my advanced algorithm is the encryption/decryption used
+throughout the program
+
+the encryption and decryption algorithm works by
 taking the users input and the key, converting
 them to the unicode code point of the character,
 offsetting the users input by getting the modulo
-of the input and the key added by 127, and converting
+of the input and the key added, and converting
 it back to english letters
 """
 
