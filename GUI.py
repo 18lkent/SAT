@@ -11,7 +11,13 @@ from tkinter import filedialog
 def main():
     root = tk.Tk()
     root.title("Encoder/Decoder") # gives title to gui
-    root.geometry('800x600') # sets the window's size to 800px by 600px
+    w = 800  # width for the Tk root
+    h = 600
+    ws = root.winfo_screenwidth()  # width of the screen
+    hs = root.winfo_screenheight()  # height of the screen
+    x = (ws / 2) - (w / 2)
+    y = (hs / 2) - (h / 2)
+    root.geometry('%dx%d+%d+%d' % (800, 600, x, y))
     root.resizable(False, False) # disallows window resizing
     bgc = "#515151" # default background colour (dark grey)
     root.configure(bg=bgc) # sets windows background colour as dark grey
@@ -867,6 +873,11 @@ def main():
 
     root.mainloop() # starts mainloop
 
+########################################################################################################################
+# Login Screen                                                                                                         #
+########################################################################################################################
+
+
 def Login():
 
     username1 = "Lachlan"
@@ -874,7 +885,13 @@ def Login():
 
     root = tk.Tk()
     root.title("Login") # gives title to gui
-    root.geometry('400x300') # sets the window's size to 800px by 600px
+    w = 400  # width for the Tk root
+    h = 300  # height for the Tk root
+    ws = root.winfo_screenwidth()  # width of the screen
+    hs = root.winfo_screenheight()  # height of the screen
+    x = (ws / 2) - (w / 2)
+    y = (hs / 2) - (h / 2)
+    root.geometry('%dx%d+%d+%d' % (400, 300, x, y))
     root.resizable(False, False) # disallows window resizing
     bgc = "#515151" # default background colour (dark grey)
     dbgc = "#3d3d3d"
