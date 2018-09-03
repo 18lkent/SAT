@@ -8,6 +8,7 @@ from tkinter import filedialog
 ########################################################################################################################
 # Base Settings and Universal Assets                                                                                   #
 ########################################################################################################################
+
 def main():
     root = tk.Tk()
     root.title("Encoder/Decoder") # gives title to gui
@@ -50,9 +51,9 @@ def main():
     tkvar2.set("Dark") # setting the default theme
     tkvar.set("Default") # setting the default colour
 
-    ########################################################################################################################
-    # Default Set                                                                                                        #
-    ########################################################################################################################
+########################################################################################################################
+# Default Set                                                                                                        #
+########################################################################################################################
 
     def default_all_set():
         f = open("user.cfg", "w") # opens "user.cfg" file
@@ -102,9 +103,9 @@ def main():
         x.write(colour+"\n"+theme+"\n"+font+"Default") # writes default font
         x.close() # closes user.cfg
 
-    ########################################################################################################################
-    # Config Saver                                                                                                         #
-    ########################################################################################################################
+########################################################################################################################
+# Config Saver                                                                                                         #
+########################################################################################################################
 
     def theme_saver(colour):
         with open('user.cfg', 'r') as f: #opens user.cfg as "f"
@@ -156,9 +157,9 @@ def main():
                 x.close()
 
 
-    ########################################################################################################################
-    # Colour Picker                                                                                                        #
-    ########################################################################################################################
+########################################################################################################################
+# Colour Picker                                                                                                        #
+########################################################################################################################
 
     def key_confirm():
         key = keytext.get("1.0", 'end-1c') # gets key from key text box
@@ -176,9 +177,9 @@ def main():
                 x.write(colour+"\n"+theme+"\n"+font+"\n"+key) # writes new key in cfg file
                 x.close()
 
-    ########################################################################################################################
-    # Key confirm                                                                                                          #
-    ########################################################################################################################
+########################################################################################################################
+# Key confirm                                                                                                          #
+########################################################################################################################
 
     def colour_confirm(new_value): # defines function "colourConfirm" with parameters "new_value"
         if new_value == "Default": # if the value included equals default,
@@ -224,9 +225,9 @@ def main():
         elif new_value == "Custom":
             custom_colour()
 
-    ########################################################################################################################
-    # Custom Hex Colour Selector                                                                                           #
-    ########################################################################################################################
+########################################################################################################################
+# Custom Hex Colour Selector                                                                                           #
+########################################################################################################################
 
     def custom_colour():
         customcolourtext.tkraise() # raises the custom colour text box
@@ -243,10 +244,9 @@ def main():
         except tk.TclError:
             customcolourerror.tkraise()
 
-
-    ########################################################################################################################
-    # Font Picker                                                                                                         #
-    ########################################################################################################################
+########################################################################################################################
+# Font Picker                                                                                                         #
+########################################################################################################################
 
     def font_confirm(font_value):
         if font_value == "Default": # if font is "Default"
@@ -263,6 +263,8 @@ def main():
             encodebrowse.configure(font=("Futura", 15, "italic"))
             decodebrowse.configure(font=("Futura", 15, "italic"))
             keylabel.configure(font=("Futura", 15, "italic"))
+            decodebrowse.configure(font=("Futura", 15, "italic"))
+            encodebrowse.configure(font=("Futura", 15, "italic"))
             colour_saver("Defaultf") # write to the file
         elif font_value == "Futura": # if font_value is anything else,
             colourdropdownMenutitle.configure(font=("Futura", 15, "italic")) # set all text that font
@@ -278,6 +280,8 @@ def main():
             encodetextheaderlabel.configure(font=("Futura", 15, "italic"))
             decodetextheaderlabel.configure(font=("Futura", 15, "italic"))
             keylabel.configure(font=("Futura", 15, "italic"))
+            decodebrowse.configure(font=("Futura", 15, "italic"))
+            encodebrowse.configure(font=("Futura", 15, "italic"))
             colour_saver("Futura")
         elif font_value == "Helvetica":
             colourdropdownMenutitle.configure(font=("Helvetica", 15, "italic"))
@@ -293,6 +297,8 @@ def main():
             encodetextheaderlabel.configure(font=("Helvetica", 15, "italic"))
             decodetextheaderlabel.configure(font=("Helvetica", 15, "italic"))
             keylabel.configure(font=("Helvetica", 15, "italic"))
+            decodebrowse.configure(font=("Helvetica", 15, "italic"))
+            encodebrowse.configure(font=("Helvetica", 15, "italic"))
             colour_saver("Helvetica")
         elif font_value == "Trajan":
             colourdropdownMenutitle.configure(font=("Trajan", 15, "italic"))
@@ -308,6 +314,8 @@ def main():
             encodetextheaderlabel.configure(font=("Trajan", 15, "italic"))
             decodetextheaderlabel.configure(font=("Trajan", 15, "italic"))
             keylabel.configure(font=("Trajan", 15, "italic"))
+            decodebrowse.configure(font=("Trajan", 13, "italic"))
+            encodebrowse.configure(font=("Trajan", 13, "italic"))
             colour_saver("Trajan")
         elif font_value == "Garamond":
             colourdropdownMenutitle.configure(font=("Garamond", 16, "italic"))
@@ -323,6 +331,8 @@ def main():
             encodetextheaderlabel.configure(font=("Garamond", 15, "italic"))
             decodetextheaderlabel.configure(font=("Garamond", 15, "italic"))
             keylabel.configure(font=("Garamond", 15, "italic"))
+            decodebrowse.configure(font=("Garamond", 16, "italic"))
+            encodebrowse.configure(font=("Garamond", 16, "italic"))
             colour_saver("Garamond")
         elif font_value == "Bodoni":
             colourdropdownMenutitle.configure(font=("Bodoni", 15, "italic"))
@@ -338,6 +348,8 @@ def main():
             encodetextheaderlabel.configure(font=("Bodoni", 15, "italic"))
             decodetextheaderlabel.configure(font=("Bodoni", 15, "italic"))
             keylabel.configure(font=("Bodoni", 15, "italic"))
+            decodebrowse.configure(font=("Bodoni", 13, "italic"))
+            encodebrowse.configure(font=("Bodoni", 13, "italic"))
             colour_saver("Bodoni")
         elif font_value == "Comic Sans":
             colourdropdownMenutitle.configure(font=("Comic Sans MS", 15, "italic"))
@@ -353,6 +365,8 @@ def main():
             encodetextheaderlabel.configure(font=("Comic Sans MS", 15, "italic"))
             decodetextheaderlabel.configure(font=("Comic Sans MS", 15, "italic"))
             keylabel.configure(font=("Comic Sans MS", 15, "italic"))
+            decodebrowse.configure(font=("Comic Sans MS", 13, "italic"))
+            encodebrowse.configure(font=("Comic Sans MS", 13, "italic"))
             colour_saver("Comic Sans")
         elif font_value == "Verdana":
             colourdropdownMenutitle.configure(font=("Verdana", 15, "italic"))
@@ -368,10 +382,12 @@ def main():
             encodetextheaderlabel.configure(font=("Verdana", 15, "italic"))
             decodetextheaderlabel.configure(font=("Verdana", 15, "italic"))
             keylabel.configure(font=("Verdana", 15, "italic"))
+            decodebrowse.configure(font=("Verdana", 15, "italic"))
+            encodebrowse.configure(font=("Verdana", 15, "italic"))
             colour_saver("Verdana")
-    ########################################################################################################################
-    # Theme Picker                                                                                                         #
-    ########################################################################################################################
+########################################################################################################################
+# Theme Picker                                                                                                         #
+########################################################################################################################
 
     def theme_confirm(theme_value):
         if theme_value == "Dark": # if theme_value is dark
@@ -447,9 +463,9 @@ def main():
             font_saver("Light")
 
 
-    ########################################################################################################################
-    # Settings button commands                                                                                             #
-    ########################################################################################################################
+########################################################################################################################
+# Settings button commands                                                                                             #
+########################################################################################################################
 
     def settings_button(): # this is the command that is triggered when the setting tab button is pressed
         encodetextheadershadow.lower() # Lowers the header above the encode text box's shadow so that it is not visable
@@ -487,9 +503,9 @@ def main():
         keytext.tkraise()
         selectedWindow.place(relx=0.094, rely=0.04) # positions the current window indicator below the settings window
 
-    ########################################################################################################################
-    # General button commands                                                                                              #
-    ########################################################################################################################
+########################################################################################################################
+# General button commands                                                                                              #
+########################################################################################################################
 
     def general_button(): # this is the command that is triggered when the general button is triggered
         encodetextshadow.tkraise() # Raises the encode text box shadow
@@ -528,9 +544,9 @@ def main():
         selectedWindow.place(relx=0.004, rely=0.04) # positions the current window indicator below the general window
 
 
-    ########################################################################################################################
-    # Settings Page                                                                                                        #
-    ########################################################################################################################
+########################################################################################################################
+# Settings Page                                                                                                        #
+########################################################################################################################
 
     colourdropdownMenu = tk.OptionMenu(root, tkvar, *Colours, command=colour_confirm) # makes the dropdown menu
     colourdropdownMenu.place(relx=0.202, rely=0.105) # places the dropdown menu relative to the window
@@ -612,9 +628,9 @@ def main():
     hider = tk.Frame(root, bg=bgc, width=800, height=600) # a frame for hiding the contents of the page which the user is not on
     hider.place(relx=0,rely=0) # places the hider
 
-    ########################################################################################################################
-    # Header                                                                                                               #
-    ########################################################################################################################
+########################################################################################################################
+# Header                                                                                                               #
+########################################################################################################################
 
     trim = tk.Frame(root, bg=trimc,width=800, height=3,) # defines the size and colour of the pink trim
     trim.place(relx=0.0, rely=0.049) # places the trim relative to the window (this is why i disabled window resizing)
@@ -625,9 +641,9 @@ def main():
     selectedWindow = tk.Frame(root, bg=trimc, width=69, height=2) # creates the selected window indicator
     selectedWindow.place(relx=0.004, rely=0.04) # places the selected window indicator
 
-    ########################################################################################################################
-    # Header Buttons                                                                                                       #
-    ########################################################################################################################
+########################################################################################################################
+# Header Buttons                                                                                                       #
+########################################################################################################################
 
     generalb = tk.Button(root, text="General",highlightbackground=hdc, command=general_button) # creates general button
     generalb.place(relx=0.0, rely=0.0, height=24, width=75) # positions the button on the toolbar relative to the window
@@ -637,9 +653,9 @@ def main():
     settingsb.place(relx=0.09, rely=0.0, height=24, width=75) # positions the button on the toolbar relative to the window
     settingsb.config(font=("Futura",15, "italic")) # sets font and text size for general button
 
-    ########################################################################################################################
-    # Encode text box                                                                                                      #
-    ########################################################################################################################
+########################################################################################################################
+# Encode text box                                                                                                      #
+########################################################################################################################
 
     encodetextheadershadow = tk.Frame(root, bg="black",width=341, height=31,) # makes the the shadow below the encoder header
     encodetextheadershadow.place(relx=0.052, rely=0.105) # places the shadow below the header
@@ -658,9 +674,9 @@ def main():
     encodetext.place(relx=0.05, rely=0.165) # places the text box on the screen relative to the window
     encodetext.config(highlightbackground=hdc) # makes the highlight border the same colour as the text box
 
-    ########################################################################################################################
-    # Decode text box                                                                                                      #
-    ########################################################################################################################
+########################################################################################################################
+# Decode text box                                                                                                      #
+########################################################################################################################
 
     decodetextheadershadow = tk.Frame(root, bg="black",width=341, height=31,) # makes the the shadow below the decoder header
     decodetextheadershadow.place(relx=0.532, rely=0.105) # places the shadow below the header
@@ -679,9 +695,9 @@ def main():
     decodetext.place(relx=0.53, rely=0.165) # positions the text box on the screen relative to the window
     decodetext.config(highlightbackground=hdc) # makes the highlight border the same colour as the text box
 
-    ########################################################################################################################
-    # file dialog                                                                                                          #
-    ########################################################################################################################
+########################################################################################################################
+# file dialog                                                                                                          #
+########################################################################################################################
 
     def encodefromfile():
         try:
@@ -737,12 +753,12 @@ def main():
     encodebrowse.place(relx=0.05,rely=0.1)
 
     decodebrowse = tk.Button(root, text="Browse", highlightbackground=hdc, command=decodefromfile)
-    decodebrowse.place(relx=0.865,rely=0.1)
+    decodebrowse.place(relx=0.86,rely=0.1)
 
 
-    ########################################################################################################################
-    # Encryption/Decryption Function                                                                                       #
-    ########################################################################################################################
+########################################################################################################################
+# Encryption/Decryption Function                                                                                       #
+########################################################################################################################
 
     def encrypt( event ):
         with open('user.cfg', 'r') as f:
@@ -778,9 +794,9 @@ def main():
 
     decodetext.bind("<KeyRelease>", decrypt)# binds the users key releases to the decodethetext command which performs the algorythm
     encodetext.bind("<KeyRelease>", encrypt) # binds the users key releases to the encodethetext command. this makes the decode and encoding process realtime (converted as you type it)
-    ########################################################################################################################
-    # Copy decode function and button                                                                                        #
-    ########################################################################################################################
+########################################################################################################################
+# Copy decode function and button                                                                                        #
+########################################################################################################################
 
     def copyd(): # defines copy button for the decoder
         copyd2 = decodetext.get("1.0", 'end-1c') # gets text from the decoder box
@@ -792,9 +808,9 @@ def main():
     copydb.place(relx=0.867, rely=0.83, height=24, width=75) # establishes proportions and location of the button relative to the window
     copydb.config(font=("Futura",15, "italic")) # configures text on the button
 
-    ########################################################################################################################
-    # Copy encode function and button                                                                                      #
-    ########################################################################################################################
+########################################################################################################################
+# Copy encode function and button                                                                                      #
+########################################################################################################################
 
     def copye(): # defines copy button for the encoder
         copye2 = encodetext.get("1.0", 'end-1c') # gets text from the encoder box
@@ -806,24 +822,24 @@ def main():
     copyeb.place(relx=0.0465, rely=0.83, height=24, width=75) # establishes proportions and location of the button relative to the window
     copyeb.config(font=("Futura",15, "italic")) # configures text on the button
 
-    ########################################################################################################################
-    # Close button function                                                                                                #
-    ########################################################################################################################
+########################################################################################################################
+# Close button function                                                                                                #
+########################################################################################################################
 
     def close(): # defines close function
         exit(0) # exits code with code 0
 
-    ########################################################################################################################
-    # Close Button                                                                                                         #
-    ########################################################################################################################
+########################################################################################################################
+# Close Button                                                                                                         #
+########################################################################################################################
 
     closeb = tk.Button(root, text="Close",highlightbackground=bgc, command=close) # creates close button and assigns close command
     closeb.place(relx=0.9, rely=0.95, height=24, width=75) # places button and defines size
     closeb.config(font=("Futura",15, "italic")) # configures text on the button
 
-    ########################################################################################################################
-    # User Config file                                                                                                     #
-    ########################################################################################################################
+########################################################################################################################
+# User Config file                                                                                                     #
+########################################################################################################################
     try:
         with open('user.cfg', 'r') as f:
             cfg = [line.strip() for line in f]
@@ -867,9 +883,9 @@ def main():
         default_all_set()
 
 
-    ########################################################################################################################
-    # Main loop                                                                                                            #
-    ########################################################################################################################
+########################################################################################################################
+# Main loop                                                                                                            #
+########################################################################################################################
 
     root.mainloop() # starts mainloop
 
@@ -880,7 +896,7 @@ def main():
 
 def Login():
 
-    username1 = "Lachlan"
+    username1 = "User123"
     password1 = "CoolPassword123"
 
     root = tk.Tk()
