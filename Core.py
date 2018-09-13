@@ -30,8 +30,11 @@ while running == 0:
             encrypted = [] # creates list called encrypted
             for i, c in enumerate(einput):
                 key_c = ord(key[i % len(key)]) # *
+                print(key_c)
                 input_c = ord(c)
+                print(input_c)
                 encrypted.append(chr((input_c + key_c) % 127))
+                print(encrypted)
             encrypted = ''.join(encrypted)
             print("\nOutput:",encrypted+"\n")
 
