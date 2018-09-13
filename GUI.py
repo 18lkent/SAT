@@ -1,5 +1,5 @@
 ### Software created by Lachlan Kent ###
-   ### Begin date: fri 8/jun/2018 ###
+   ### Begin date: fri 15/jun/2018 ###
 ### Completion date: tue 21/aug/2018 ###
 
 import tkinter as tk #imports tkinter module as tk
